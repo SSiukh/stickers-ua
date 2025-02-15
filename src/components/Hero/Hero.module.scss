@@ -1,0 +1,55 @@
+@use "../../styles/variables.scss" as *;
+
+.hero {
+  background-image: url("../../assets/otherImages/hero-background.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding-top: 160px;
+  padding-bottom: 70px;
+  .heroContainer {
+    display: flex;
+    align-items: center;
+    .mainContent {
+      margin-right: 81px;
+      .heroTitle {
+        font-weight: 700;
+        font-size: 58px;
+        color: $beige;
+        max-width: 568px;
+        margin-bottom: 30px;
+      }
+      .heroText {
+        font-weight: 600;
+        font-size: 24px;
+        color: #f2e8cf;
+        max-width: 379px;
+        margin-bottom: 97px;
+      }
+      .heroButton {
+        border-radius: 33px;
+        background-color: #eb6424;
+        font-weight: 600;
+        font-size: 28px;
+        color: #f2e8cf;
+        border: none;
+        padding: 31px 49px;
+        @include setTr(color, background-color);
+
+        &:hover {
+          background-color: $beige;
+          color: $orange;
+        }
+      }
+    }
+
+    .heroImg {
+      width: 530px;
+      @include setTr(transform);
+
+      &:hover {
+        transform: scale(110%);
+      }
+    }
+  }
+}

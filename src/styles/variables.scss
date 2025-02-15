@@ -1,0 +1,36 @@
+$red: #ff0000;
+$orange: #eb6424;
+$green: #346227;
+$darkGreen: #38572a;
+$beige: #f2e8cf;
+$gray: #e9ebe5;
+$darkGray: #8f8989;
+
+@mixin setTr($value...) {
+  transition: $value 250ms ease-in-out;
+}
+
+@mixin buttonStyle(
+  $backColor,
+  $borderColor,
+  $color,
+  $hovBackColor,
+  $hovBorderColor,
+  $hovColor
+) {
+  background-color: $backColor;
+  border: 1px solid $borderColor;
+  padding: 7px 10px;
+  border-radius: 10px;
+  color: $color;
+  font-weight: 600;
+  font-size: 18px;
+  cursor: pointer;
+  @include setTr(background-color, color, border);
+
+  &:hover {
+    background-color: $hovBackColor;
+    border: 1px solid $hovBorderColor;
+    color: $hovColor;
+  }
+}
