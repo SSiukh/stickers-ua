@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import { Toaster } from "react-hot-toast";
 import Loader from "./Loader/Loader";
+import Header from "./Header/Header";
 
 const HomePage = lazy(() => import("../pages/HomePage"));
 const CartPage = lazy(() => import("../pages/CartPage"));
@@ -13,6 +14,7 @@ const ProductCardPage = lazy(() => import("../pages/ProductCardPage"));
 function App() {
   return (
     <>
+      <Header />
       <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/" element={<HomePage />} />
