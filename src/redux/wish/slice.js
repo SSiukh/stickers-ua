@@ -9,6 +9,4 @@ const slice = createSlice({
   },
 });
 
-export const { addWish, removeWish } = slice.actions;
-
-export default slice.reducer;
+export const wishReducer = slice.reducer;

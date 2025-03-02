@@ -3,9 +3,11 @@ import CartButton from "../CartButton/CartButton";
 import { Link, NavLink } from "react-router-dom";
 import AuthButtons from "../AuthButtons/AuthButtons";
 import { useSelector } from "react-redux";
+import { HashLink } from "react-router-hash-link";
 
 const Header = () => {
   const isAuth = useSelector((state) => state.auth.isAuth);
+
   return (
     <header className={s.header}>
       <div className="container">
@@ -19,16 +21,16 @@ const Header = () => {
                 <NavLink to="/">Головна</NavLink>
               </li>
               <li className={s.item}>
-                <NavLink to="#about">Про нас</NavLink>
+                <HashLink to="/#about">Найпопулярніші</HashLink>
               </li>
               <li className={s.item}>
                 <NavLink to="/catalog">Каталог</NavLink>
               </li>
               <li className={s.item}>
-                <NavLink to="#discounts">Знижки</NavLink>
+                <HashLink to="/#discounts">Знижки</HashLink>
               </li>
               <li className={s.item}>
-                <NavLink to="#responses">Відгуки</NavLink>
+                <HashLink to="/#responses">Відгуки</HashLink>
               </li>
               <li className={s.item}>
                 <NavLink to="/wishlist">Вподобані</NavLink>

@@ -5,8 +5,8 @@ const initialState = {
   info: {
     qty: 0,
     totalPrice: 0,
-  }
-}
+  },
+};
 
 const slice = createSlice({
   name: "cart",
@@ -18,11 +18,12 @@ const slice = createSlice({
       state.info.qty = state.items.length;
     },
     calculateTotalPrice: (state) => {
-      state.info.totalPrice = state.items.reduce((sum, { price, qty }) => (sum + price * qty), 0);
-    }
+      state.info.totalPrice = state.items.reduce(
+        (sum, { price, qty }) => sum + price * qty,
+        0
+      );
+    },
   },
 });
 
-export const { addCart, removeCart, calculateQty, calculateTotalPrice } = slice.actions;
-
-export default slice.reducer;
+export const cartReducer = slice.reducer;
