@@ -1,24 +1,15 @@
 import s from "./AuthButtons.module.scss";
-import { useDispatch } from "react-redux";
-import { openModal } from "../../redux/modalsSlice";
+import { Link } from "react-router-dom";
 
 const AuthButtons = () => {
-  const dispatch = useDispatch();
-
   return (
     <div className={s.block}>
-      <button
-        onClick={() => dispatch(openModal("login"))}
-        className={s.loginButton}
-      >
+      <Link className={s.loginButton} to="/login">
         Увійти
-      </button>
-      <button
-        onClick={() => dispatch(openModal("register"))}
-        className={s.registerButton}
-      >
+      </Link>
+      <Link className={s.registerButton} to="/register">
         Зареєструватись
-      </button>
+      </Link>
     </div>
   );
 };

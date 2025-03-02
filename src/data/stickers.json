@@ -1,0 +1,91 @@
+[
+  {
+    "id": 1,
+    "name": "Dainese",
+    "onAbout": true,
+    "info": "Dainese — італійська компанія, відома виробництвом захисного спорядження для мотоциклістів, велосипедистів, лижників та інших екстремальних видів спорту.",
+    "path": "productsImages/dainese.jpg",
+    "color": "#FFFFFF",
+    "price": 30,
+    "discount": 25,
+    "quantity": 150,
+    "type": "Голографічні"
+  },
+  {
+    "id": 2,
+    "name": "Gas Gas",
+    "onAbout": false,
+    "info": "Gas Gas — це бренд, який поєднує в собі стиль життя, моду та мотокрос.",
+    "path": "productsImages/gasgas.jpg",
+    "color": "#ff0000",
+    "price": 75,
+    "discount": 50,
+    "type": "Текстурні"
+  },
+  {
+    "id": 3,
+    "name": "Motocross",
+    "onAbout": false,
+    "info": "Одна з найвідоміших і найскладніших у світі багатоденних автоспортивних гонок, яка щороку збирає найкращих пілотів і техніку з різних куточків світу.",
+    "path": "productsImages/motocross.jpg",
+    "color": "#000000",
+    "price": 80,
+    "discount": 75,
+    "type": "Стандартні"
+  },
+  {
+    "id": 4,
+    "name": "Motul",
+    "onAbout": false,
+    "info": "Motul — це французька компанія, що спеціалізується на виробництві мастильних матеріалів, моторних олив, рідин для обслуговування техніки та автомобільної хімії.",
+    "path": "productsImages/motul.jpg",
+    "color": "#ff0000",
+    "price": 35,
+    "discount": 0,
+    "type": "Стандартні"
+  },
+  {
+    "id": 5,
+    "name": "Stone Island",
+    "onAbout": true,
+    "info": "Stone Island — італійський бренд одягу, відомий своїм інноваційним дизайном, якістю матеріалів та унікальними технологіями обробки тканин.",
+    "path": "productsImages/stone-island.jpg",
+    "color": "#299700",
+    "price": 40,
+    "discount": 0,
+    "type": "Стандартні"
+  },
+  {
+    "id": 6,
+    "name": "Pit Bull",
+    "onAbout": true,
+    "info": "Це популярний енергетичний напій, який пропонує заряд бадьорості та енергії завдяки поєднанню кофеїну, вітамінів і інших стимулюючих інгредієнтів.",
+    "path": "productsImages/pit-bull.jpg",
+    "color": "#ffffff",
+    "price": 40,
+    "discount": 0,
+    "type": "Стандартні"
+  },
+  {
+    "id": 7,
+    "name": "Dragon",
+    "onAbout": true,
+    "info": "Якщо в душі ти Дракон, то будь-які труднощі — це просто дрібниці.",
+    "path": "productsImages/dragon.jpg",
+    "color": "#000000",
+    "price": 40,
+    "discount": 0,
+    "type": "Голографічні"
+  },
+  {
+    "id": 8,
+    "name": "Fox",
+    "onAbout": true,
+    "info": "Ця стильна наклейка виконана у вигляді культової лисички з мінімалістичним дизайном. Відмінний вибір для персоналізації шолома, авто чи інших аксесуарів!",
+    "path": "productsImages/fox.jpg",
+    "color": "#ffffff",
+    "price": 45,
+    "discount": 40,
+    "type": "Стандартні"
+  }
+]

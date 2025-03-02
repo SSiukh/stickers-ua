@@ -10,25 +10,28 @@
   .heroContainer {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     .mainContent {
-      margin-right: 81px;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
       .heroTitle {
         font-weight: 700;
         font-size: 58px;
         color: $beige;
         max-width: 568px;
-        margin-bottom: 30px;
       }
       .heroText {
         font-weight: 600;
         font-size: 24px;
         color: #f2e8cf;
         max-width: 379px;
-        margin-bottom: 97px;
+        margin-bottom: 60px;
       }
       .heroButton {
         border-radius: 33px;
         background-color: #eb6424;
+        width: fit-content;
         font-weight: 600;
         font-size: 28px;
         color: #f2e8cf;

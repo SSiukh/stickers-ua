@@ -1,0 +1,91 @@
+@use "../../styles/variables.scss" as *;
+
+.aboutUs {
+  padding: 80px 60px;
+  .aboutContainer {
+    display: flex;
+    gap: 50px;
+    align-items: center;
+
+    .aboutBlock {
+      width: calc((100% - 50px) / 2);
+      padding: 80px 60px;
+      background-color: #38572a;
+      border-radius: 50px;
+      height: 600px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .textBlock {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+
+        .aboutTitle {
+          font-weight: 600;
+          font-size: 46px;
+          color: #f2e8cf;
+        }
+        .aboutText {
+          font-weight: 500;
+          font-size: 18px;
+          line-height: 126%;
+          color: #f2e8cf;
+        }
+      }
+
+      .aboutButtons {
+        display: flex;
+        align-items: flex-end;
+        gap: 30px;
+
+        .review {
+          font-weight: 600;
+          font-size: 20px;
+          color: #f2e8cf;
+          padding: 18px 58px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 20px;
+          background-color: #eb6424;
+          transition: background-color 200ms ease-in, color 200ms ease-in;
+
+          &:hover {
+            background-color: $beige;
+            color: #eb6424;
+          }
+        }
+        .addToCart {
+          padding: 10px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 50%;
+          background-color: #eb6424;
+          border: none;
+          cursor: pointer;
+          transition: background-color 200ms ease-in, color 200ms ease-in;
+          color: $beige;
+
+          &:hover {
+            background-color: $beige;
+            color: #eb6424;
+          }
+
+          .icon {
+            color: inherit;
+          }
+        }
+      }
+    }
+
+    .swiper {
+      width: calc((100% - 50px) / 2);
+      height: auto;
+      overflow: hidden;
+      padding: 10px;
+    }
+  }
+}
