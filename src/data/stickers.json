@@ -41,7 +41,7 @@
     "path": "productsImages/motul.jpg",
     "color": "#ff0000",
     "price": 35,
-    "discount": 0,
+    "discount": 30,
     "type": "Стандартні"
   },
   {
@@ -52,7 +52,7 @@
     "path": "productsImages/stone-island.jpg",
     "color": "#299700",
     "price": 40,
-    "discount": 0,
+    "discount": 30,
     "type": "Стандартні"
   },
   {
