@@ -27,7 +27,7 @@ const Header = () => {
                 <NavLink to="/catalog">Каталог</NavLink>
               </li>
               <li className={s.item}>
-                <HashLink to="/#discounts">Знижки</HashLink>
+                <HashLink to="/#discount">Знижки</HashLink>
               </li>
               <li className={s.item}>
                 <HashLink to="/#responses">Відгуки</HashLink>
