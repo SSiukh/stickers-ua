@@ -1,0 +1,179 @@
+$background: #38572a;
+$textcolor: #f2e8cf;
+$hovercolor: #eb6424;
+$transpTextColor: #fbfbfb50;
+
+@mixin setTransition($value...) {
+  transition: $value 250ms ease;
+}
+
+.footer {
+  background-color: $background;
+}
+
+.footer_container {
+  padding: 40px 40px 28px 40px;
+  border-radius: 30px;
+
+  &_top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 76px;
+
+    &_contacts {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      align-items: center;
+
+      &_logo {
+        font-family: "Outfit", sans-serif;
+        font-weight: 400;
+        font-size: 20px;
+        text-align: center;
+        border: 1px solid $textcolor;
+        color: #fff;
+        width: max-content;
+        padding: 6px 15px;
+        background-color: transparent;
+        border-top-right-radius: 30px;
+        border-bottom-left-radius: 30px;
+        border-top-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+          border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+        &:hover {
+          color: $hovercolor;
+          border-color: $hovercolor;
+        }
+      }
+
+      &_icons {
+        display: flex;
+        gap: 10px;
+
+        &_link {
+          padding: 8px;
+          border: 1px solid rgba(242, 232, 207, 0.1);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 10px;
+          @include setTransition(border-color);
+
+          &_icon {
+            fill: $textcolor;
+            @include setTransition(fill);
+          }
+
+          &:hover {
+            border-color: $hovercolor;
+          }
+
+          &:hover > &_icon {
+            fill: $hovercolor;
+          }
+        }
+      }
+    }
+
+    &_title {
+      font-weight: 500;
+      font-size: 24px;
+      line-height: 1.14286;
+      letter-spacing: -0.02em;
+      text-align: center;
+      color: #f2e8cf;
+      max-width: 523px;
+    }
+
+    &_tel {
+      border: 1px solid rgba(251, 251, 251, 0.2);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 15px;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 1.28571;
+      color: #f2e8cf;
+      @include setTransition(border-color, color);
+
+      &:hover {
+        border-color: $hovercolor;
+        color: $hovercolor;
+      }
+    }
+  }
+
+  &_middle {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 28px;
+    &_list {
+      display: flex;
+      gap: 40px;
+      &_item {
+        cursor: pointer;
+        &_link {
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 1.28571;
+          text-align: center;
+          color: #f2e8cf;
+          @include setTransition(color);
+
+          &:hover {
+            color: $hovercolor;
+          }
+        }
+      }
+    }
+
+    &_address {
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 1.28571;
+      color: #f2e8cf;
+      max-width: 145px;
+    }
+  }
+
+  &_bottom {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 28px;
+    border-top: 1px solid $transpTextColor;
+
+    &_copyright {
+      font-weight: 200;
+      font-size: 14px;
+      line-height: 1.28571;
+      letter-spacing: -0.02em;
+      color: rgba(251, 251, 251, 0.5);
+      @include setTransition(color);
+
+      &:hover {
+        color: $textcolor;
+      }
+    }
+
+    &_dev {
+      font-weight: 200;
+      font-size: 14px;
+      line-height: 1.28571;
+      letter-spacing: -0.02em;
+      color: rgba(251, 251, 251, 0.5);
+      @include setTransition(background-image, color, background-clip);
+
+      &:hover {
+        background-image: linear-gradient(to right, #22c1c3, #fdbb2d);
+        background-clip: text;
+        color: transparent;
+      }
+    }
+  }
+}

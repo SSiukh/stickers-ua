@@ -41,7 +41,7 @@ const Responses = () => {
   }, []);
 
   return (
-    <section className={s.responses}>
+    <section id="responses" className={s.responses}>
       <div className="container">
         <h2 className={s.title}>Що говорять клієнти про наші наклейки</h2>
         <div className={s.container}>
