@@ -1,0 +1,70 @@
+@use "../../styles/variables.scss" as *;
+
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 30px 20px 30px;
+  background-color: $green;
+  border-radius: 30px;
+
+  .img {
+    border: 1px solid #fff;
+    border-radius: 21px;
+  }
+  .mainBlock {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+
+    .titleBlock {
+      display: flex;
+      justify-content: space-between;
+
+      .title {
+        font-weight: 600;
+        font-size: 15px;
+        color: #f2e8cf;
+      }
+      .wishButton {
+        background-color: transparent;
+        border: none;
+
+        .wishIcon {
+          color: $beige;
+        }
+      }
+    }
+    .priceBlock {
+      display: flex;
+      justify-content: space-between;
+
+      .prices {
+        .price {
+          font-weight: 400;
+          font-size: 12px;
+          color: #c4c4c4;
+        }
+        .discount {
+          font-weight: 600;
+          font-size: 16px;
+          color: #f00;
+        }
+      }
+      .cartButton {
+        border-radius: 10px;
+        background-color: $orange;
+        border: none;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .cartIcon {
+          color: $beige;
+        }
+      }
+    }
+  }
+}
