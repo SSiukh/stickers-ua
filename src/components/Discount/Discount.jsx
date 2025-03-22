@@ -6,10 +6,11 @@ import stickers from "../../data/stickers.json";
 import s from "./Discount.module.scss";
 import ProductCard from "../ProductCard/ProductCard";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import clsx from "clsx";
+import { IconButton } from "@mui/material";
 
 const Discount = () => {
   const swiperRef = useRef(null);
+  const [swiperInstance, setSwiperInstance] = useState(null);
   const [isFirstSlide, setIsFirstSlide] = useState(true);
   const [isLastSlide, setIsLastSlide] = useState(false);
 
@@ -17,14 +18,10 @@ const Discount = () => {
     if (swiperRef.current) {
       const swiper = new Swiper(swiperRef.current, {
         modules: [Navigation],
-        slidesPerView: 4,
+        slidesPerView: 3,
         slidesPerGroup: 1,
         spaceBetween: 50,
         pagination: { clickable: true },
-        navigation: {
-          nextEl: `.${s.nextButton}`,
-          prevEl: `.${s.prevButton}`,
-        },
         on: {
           slideChange: () => {
             setIsFirstSlide(swiper.isBeginning);
@@ -32,6 +29,7 @@ const Discount = () => {
           },
         },
       });
+      setSwiperInstance(swiper);
 
       return () => swiper.destroy();
     }
@@ -42,23 +40,33 @@ const Discount = () => {
   return (
     <section id="discount" className={s.discount}>
       <div className="container">
-        <div className={s.container}>
-          <div className="discount-swiper" ref={swiperRef}>
-            <div className="swiper-wrapper">
-              {filteredStickers.map((sticker) => (
-                <div key={sticker.id} className="swiper-slide">
-                  <ProductCard stickers={sticker} />
-                </div>
-              ))}
-            </div>
-            <div className={s.buttons}>
-              <div className={clsx(s.prevButton, isFirstSlide && s.disabled)}>
-                <IoIosArrowBack className={s.navIcons} size={40} />
-              </div>
-              <div className={clsx(s.nextButton, isLastSlide && s.disabled)}>
-                <IoIosArrowForward className={s.navIcons} size={40} />
+        <div className={s.main}>
+          <div className={s.container}>
+            <div className="discount-swiper" ref={swiperRef}>
+              <div className="swiper-wrapper">
+                {filteredStickers.map((sticker) => (
+                  <div key={sticker.id} className="swiper-slide">
+                    <ProductCard stickers={sticker} />
+                  </div>
+                ))}
               </div>
             </div>
+          </div>
+          <div
+            onClick={() => swiperInstance?.slidePrev()}
+            className={s.prevButton}
+          >
+            <IconButton disabled={isFirstSlide} color="primary">
+              <IoIosArrowBack size={35} />
+            </IconButton>
+          </div>
+          <div
+            onClick={() => swiperInstance?.slideNext()}
+            className={s.nextButton}
+          >
+            <IconButton disabled={isLastSlide} color="primary">
+              <IoIosArrowForward size={35} />
+            </IconButton>
           </div>
         </div>
       </div>

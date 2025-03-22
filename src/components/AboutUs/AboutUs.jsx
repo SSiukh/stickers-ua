@@ -4,8 +4,9 @@ import "swiper/css/bundle";
 import stickers from "../../data/stickers.json";
 import AboutUsSlide from "./AboutUsSlide/AboutUsSlide";
 import { useEffect, useState } from "react";
-import { LuShoppingCart } from "react-icons/lu";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Link } from "react-router-dom";
+import { IconButton } from "@mui/material";
 
 const AboutUs = () => {
   const [activeIndex, setActiveIndex] = useState(1);
@@ -54,9 +55,9 @@ const AboutUs = () => {
               >
                 Огляд
               </Link>
-              <button className={s.addToCart}>
-                <LuShoppingCart className={s.icon} size={25} />
-              </button>
+              <IconButton color="secondary" size="large">
+                <ShoppingCartIcon />
+              </IconButton>
             </div>
           </div>
           <div className={s.swiper}>

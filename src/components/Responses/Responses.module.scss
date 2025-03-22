@@ -20,33 +20,14 @@
   position: relative;
 
   .prevButton {
-    background-color: $orange;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    border: 2px solid transparent;
     position: absolute;
     top: calc(50% - 25px);
-    left: 20px;
-    z-index: 3;
-    @include setTr(background-color, border-color);
-
-    &:hover {
-      background-color: $beige;
-      border-color: $orange;
-    }
-    &:hover .navIcons {
-      color: $orange;
-    }
+    left: 0;
   }
   .nextButton {
-    @extend .prevButton;
-    left: unset;
-    right: 20px;
+    position: absolute;
+    top: calc(50% - 25px);
+    right: 0;
   }
   .navIcons {
     color: $beige;

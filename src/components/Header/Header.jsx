@@ -1,12 +1,14 @@
 import s from "./Header.module.scss";
 import CartButton from "../CartButton/CartButton";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import AuthButtons from "../AuthButtons/AuthButtons";
 import { useSelector } from "react-redux";
-import { HashLink } from "react-router-hash-link";
+import { selectIsLoggedIn } from "../../redux/auth/selectors";
+import { Link as ScrollLink } from "react-scroll";
 
 const Header = () => {
-  const isAuth = useSelector((state) => state.auth.isAuth);
+  const isAuth = useSelector(selectIsLoggedIn);
+  const { pathname } = useLocation();
 
   return (
     <header className={s.header}>
@@ -20,18 +22,30 @@ const Header = () => {
               <li className={s.item}>
                 <NavLink to="/">Головна</NavLink>
               </li>
-              <li className={s.item}>
-                <HashLink to="/#about">Найпопулярніші</HashLink>
-              </li>
+              {pathname === "/" && (
+                <li className={s.item}>
+                  <ScrollLink to="about" smooth={true} duration={500}>
+                    Найпопулярніші
+                  </ScrollLink>
+                </li>
+              )}
               <li className={s.item}>
                 <NavLink to="/catalog">Каталог</NavLink>
               </li>
-              <li className={s.item}>
-                <HashLink to="/#discount">Знижки</HashLink>
-              </li>
-              <li className={s.item}>
-                <HashLink to="/#responses">Відгуки</HashLink>
-              </li>
+              {pathname === "/" && (
+                <li className={s.item}>
+                  <ScrollLink to="discount" smooth={true} durstion={500}>
+                    Знижки
+                  </ScrollLink>
+                </li>
+              )}
+              {pathname === "/" && (
+                <li className={s.item}>
+                  <ScrollLink to="responses" smooth={true} durstion={500}>
+                    Відгуки
+                  </ScrollLink>
+                </li>
+              )}
               <li className={s.item}>
                 <NavLink to="/wishlist">Вподобані</NavLink>
               </li>
