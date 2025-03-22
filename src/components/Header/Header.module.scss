@@ -18,7 +18,7 @@
 
   .logo {
     font-weight: 600;
-    font-size: 28px;
+    font-size: 26px;
     text-align: center;
     color: #fff;
     padding: 2px 10px;
@@ -28,8 +28,7 @@
     @include setTr(color, background-color);
 
     &:hover {
-      background-color: $beige;
-      color: #eb6424;
+      background-color: rgb(164, 70, 25);
     }
   }
   .navigation {

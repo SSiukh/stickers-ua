@@ -3,10 +3,4 @@
 .block {
   display: flex;
   gap: 10px;
-  .loginButton {
-    @include buttonStyle($orange, transparent, $beige, $beige, $beige, $orange);
-  }
-  .registerButton {
-    @include buttonStyle(transparent, $beige, $beige, $beige, $beige, $orange);
-  }
 }

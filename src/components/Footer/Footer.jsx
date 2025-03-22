@@ -96,14 +96,6 @@ const Footer = () => {
                   Відгуки
                 </ScrollLink>
               </li>
-              <li className={s.footer_container_middle_list_item}>
-                <a
-                  href="#"
-                  className={s.footer_container_middle_list_item_link}
-                >
-                  Замовити
-                </a>
-              </li>
             </ul>
             <p className={s.footer_container_middle_address}>
               Україна, Луцьк, просп. Відродження, 43003

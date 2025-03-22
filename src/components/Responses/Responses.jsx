@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import s from "./Responses.module.scss";
 import Swiper from "swiper";
-import clsx from "clsx";
 import responses from "../../data/responses.json";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import Response from "./Response/Response";
+import { IconButton } from "@mui/material";
 
 const Responses = () => {
   const swiperRef = useRef(null);
@@ -56,11 +56,15 @@ const Responses = () => {
               </div>
             </div>
           </div>
-          <div className={clsx(s.prevButton, isFirstSlide && s.disabled)}>
-            <IoIosArrowBack className={s.navIcons} size={40} />
+          <div className={s.prevButton}>
+            <IconButton disabled={isFirstSlide} color="primary">
+              <IoIosArrowBack size={35} />
+            </IconButton>
           </div>
-          <div className={clsx(s.nextButton, isLastSlide && s.disabled)}>
-            <IoIosArrowForward className={s.navIcons} size={40} />
+          <div className={s.nextButton}>
+            <IconButton disabled={isLastSlide} color="primary">
+              <IoIosArrowForward size={35} />
+            </IconButton>
           </div>
         </div>
       </div>

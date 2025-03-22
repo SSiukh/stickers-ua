@@ -1,0 +1,55 @@
+@use "../../styles/variables.scss" as *;
+
+.section {
+  background-image: url("../../assets/otherImages/hero-background.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100dvh;
+
+    .form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      width: 40%;
+      padding: 30px 50px;
+      background-color: #2031182d;
+      backdrop-filter: blur(10px);
+      border: 1px solid $beige;
+      border-radius: 30px;
+      @include setTr(background-color);
+
+      .formText {
+        color: $beige;
+        font-weight: 600;
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+
+      .unsigned {
+        color: $beige;
+        margin-bottom: 10px;
+
+        .login {
+          color: $orange;
+          text-decoration: underline;
+
+          &:hover {
+            color: $orange-hov;
+          }
+        }
+      }
+
+      &:hover {
+        background-color: #20311842;
+      }
+    }
+  }
+}

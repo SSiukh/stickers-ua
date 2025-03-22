@@ -16,13 +16,13 @@ const RegisterPage = lazy(() => import("../pages/RegisterPage"));
 function App() {
   return (
     <>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/cart" element={<CartPage />} />
-          <Route path="/catalog" element={<CatalogPage />} />
-          <Route path="/wishlist" element={<WishListPage />} />
-          <Route path="/catalog/:productId" element={<ProductCardPage />} />
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<HomePage />} />
+          <Route path="cart" element={<CartPage />} />
+          <Route path="catalog" element={<CatalogPage />} />
+          <Route path="wishlist" element={<WishListPage />} />
+          <Route path="catalog/:productId" element={<ProductCardPage />} />
           <Route
             path="/login"
             element={<RestrictedRoute component={<LoginPage />} />}
@@ -32,8 +32,8 @@ function App() {
             element={<RestrictedRoute component={<RegisterPage />} />}
           />
           <Route path="/*" element={<NotFoundPage />} />
-        </Routes>
-      </Layout>
+        </Route>
+      </Routes>
       <Notificator />
     </>
   );

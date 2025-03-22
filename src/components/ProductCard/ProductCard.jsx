@@ -1,7 +1,8 @@
 import clsx from "clsx";
 import s from "./ProductCard.module.scss";
-import { FaHeart } from "react-icons/fa";
-import { LuShoppingCart } from "react-icons/lu";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import { IconButton } from "@mui/material";
 
 const ProductCard = ({ stickers }) => {
   const { id, name, path, price, discount } = stickers;
@@ -12,18 +13,18 @@ const ProductCard = ({ stickers }) => {
       <div className={s.mainBlock}>
         <div className={s.titleBlock}>
           <p className={s.title}>{name}</p>
-          <button className={s.wishButton}>
-            <FaHeart size={20} className={s.wishIcon} />
-          </button>
+          <IconButton color="secondary">
+            <FavoriteIcon />
+          </IconButton>
         </div>
         <div className={s.priceBlock}>
           <div className={s.prices}>
-            <p className={s.price}>{price}</p>
+            <p className={s.price}>{price} грн</p>
             {discount !== 0 && <p className={s.discount}>{discount} грн/шт</p>}
           </div>
-          <button className={s.cartButton}>
-            <LuShoppingCart size={22} className={s.cartIcon} />
-          </button>
+          <IconButton color="secondary">
+            <ShoppingCartIcon />
+          </IconButton>
         </div>
       </div>
     </div>

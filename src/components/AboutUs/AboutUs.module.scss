@@ -50,11 +50,10 @@
           align-items: center;
           border-radius: 20px;
           background-color: #eb6424;
-          transition: background-color 200ms ease-in, color 200ms ease-in;
+          transition: background-color 200ms ease-in;
 
           &:hover {
-            background-color: $beige;
-            color: #eb6424;
+            background-color: $orange-hov;
           }
         }
         .addToCart {
