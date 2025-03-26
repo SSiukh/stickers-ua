@@ -7,7 +7,7 @@ import RestrictedRoute from "./RestrictedRoute";
 const HomePage = lazy(() => import("../pages/HomePage"));
 const CartPage = lazy(() => import("../pages/CartPage"));
 const CatalogPage = lazy(() => import("../pages/CatalogPage"));
-const NotFoundPage = lazy(() => import("../pages/NotFoundPage"));
+const NotFoundPage = lazy(() => import("../pages/NotFoundPage/NotFoundPage"));
 const WishListPage = lazy(() => import("../pages/WishListPage"));
 const ProductCardPage = lazy(() => import("../pages/ProductCardPage"));
 const LoginPage = lazy(() => import("../pages/LoginPage"));

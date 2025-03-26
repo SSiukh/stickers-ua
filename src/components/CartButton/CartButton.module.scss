@@ -1,39 +1,14 @@
 @use "../../styles/variables.scss" as *;
 
 .container {
-    width: fit-content;
-    position: relative;
-    display: flex;
-    align-items: center;
-    padding: 10px 5px;
+  width: fit-content;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 
-    .price {
-        font-size: 18px;
-        color: $beige;
-    }
-    .button {
-        background-color: transparent;
-        border: none;
-
-        .icon {
-            color: $beige;
-            width: 30px;
-            height: 30px;
-        }
-        .qty {
-            width: 15px;
-            height: 15px;
-            font-size: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: $beige;
-            color: $green;
-            line-height: 1;
-            border-radius: 50%;
-            position: absolute;
-            right: 3px;
-            top: 3px;
-        }
-    }
+  .price {
+    font-size: 18px;
+    color: $beige;
+  }
 }

@@ -7,9 +7,17 @@ import { useEffect, useState } from "react";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Link } from "react-router-dom";
 import { IconButton } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import { addCart } from "../../redux/cart/slice";
+import { selectCartItems } from "../../redux/cart/selectors";
+import toast from "react-hot-toast";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
 const AboutUs = () => {
   const [activeIndex, setActiveIndex] = useState(1);
+  const dispatch = useDispatch();
+  const cartProducts = useSelector(selectCartItems);
+
   useEffect(() => {
     const swiper = new Swiper(".about-swiper", {
       effect: "coverflow",
@@ -35,6 +43,21 @@ const AboutUs = () => {
 
   const filteredStickers = stickers.filter((sticker) => sticker.onAbout);
 
+  const addToCart = (id, object) => {
+    const isExistIndex = cartProducts.findIndex((sticker) => sticker.id === id);
+
+    if (isExistIndex === -1) {
+      dispatch(addCart({ ...object, qty: 1 }));
+      return;
+    }
+
+    toast.error("Товар вже присутній в кошику");
+  };
+
+  const isInCart = cartProducts.find(
+    (item) => item.id === filteredStickers[activeIndex].id
+  );
+
   return (
     <section id="about" className={s.aboutUs}>
       <div className="container">
@@ -55,8 +78,24 @@ const AboutUs = () => {
               >
                 Огляд
               </Link>
-              <IconButton color="secondary" size="large">
-                <ShoppingCartIcon />
+              <IconButton
+                onClick={() =>
+                  addToCart(filteredStickers[activeIndex].id, {
+                    id: filteredStickers[activeIndex].id,
+                    name: filteredStickers[activeIndex].name,
+                    path: filteredStickers[activeIndex].path,
+                    price: filteredStickers[activeIndex].price,
+                    discount: filteredStickers[activeIndex].discount,
+                  })
+                }
+                color="secondary"
+                size="large"
+              >
+                {isInCart ? (
+                  <AddShoppingCartIcon color="success" />
+                ) : (
+                  <ShoppingCartIcon />
+                )}
               </IconButton>
             </div>
           </div>

@@ -1,0 +1,20 @@
+@use "../../styles/variables.scss" as *;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  align-items: center;
+  justify-content: center;
+
+  .code {
+    font-size: 250px;
+    font-weight: 900;
+    color: $beige;
+  }
+  .text {
+    color: $beige;
+    font-size: 26px;
+    margin-bottom: 30px;
+  }
+}
