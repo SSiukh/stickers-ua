@@ -1,0 +1,96 @@
+@use "../../styles/variables.scss" as *;
+
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: calc(100% - 108px);
+  left: 0;
+  top: 108px;
+  display: flex;
+  justify-content: flex-end;
+  z-index: 6;
+  background-color: #00000054;
+  backdrop-filter: blur(5px);
+
+  .container {
+    background-color: $green;
+    padding-top: 10px;
+    width: fit-content;
+    min-width: 473px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .topBlock {
+      display: flex;
+      flex-direction: column;
+      padding: 0 33px;
+      height: calc(100% - 180px);
+
+      .textBlock {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 25px;
+
+        .text {
+          font-size: 36px;
+          color: $beige;
+          font-weight: 600;
+        }
+      }
+
+      .list {
+        height: 100%;
+        overflow: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        padding-right: 7px;
+
+        &::-webkit-scrollbar {
+          width: 10px;
+          height: 10px;
+          margin-right: 10px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background-color: $beige-border;
+          border-radius: 10px;
+
+          &:hover,
+          &:active {
+            background-color: $beige;
+          }
+        }
+      }
+    }
+
+    .priceBlock {
+      border-radius: 30px 30px 0 0;
+      padding: 33px;
+      background-color: #2e4722;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+
+      .priceTextBlock {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: space-between;
+
+        .allPriceText {
+          color: $beige;
+          font-weight: 600;
+          font-size: 18px;
+        }
+        .allPrice {
+          color: $beige;
+          font-weight: 600;
+          font-size: 26px;
+        }
+      }
+    }
+  }
+}

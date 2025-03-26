@@ -27,6 +27,7 @@
     "react-router-dom": "^7.1.5",
     "react-router-hash-link": "^2.4.3",
     "react-scroll": "^1.9.3",
+    "redux-persist": "^6.0.0",
     "swiper": "^11.2.4",
     "yup": "^1.6.1"
   },

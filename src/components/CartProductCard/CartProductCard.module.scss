@@ -1,0 +1,68 @@
+@use "../../styles/variables.scss" as *;
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 400px;
+  border-radius: 12px;
+  overflow: hidden;
+
+  .cardTop {
+    padding: 15px;
+    padding-bottom: 30px;
+    background-color: #2e4722;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+
+    .cardTopMain {
+      display: flex;
+      gap: 20px;
+      .img {
+        width: 50px;
+        border-radius: 10px;
+        border: 1px solid $beige-border;
+      }
+      .name {
+        font-weight: 600;
+        font-size: 20px;
+        color: $beige;
+      }
+    }
+    .deleteButton {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  .cardBottom {
+    padding: 10px 15px;
+    margin-top: 1px;
+    background-color: #2e4722;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
+    .price {
+      font-weight: 600;
+      font-size: 24px;
+      color: $beige;
+    }
+    .qtyBlock {
+      padding: 3px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid $beige;
+      border-radius: 25px;
+
+      .qty {
+        font-size: 16px;
+        color: $beige;
+      }
+    }
+  }
+}

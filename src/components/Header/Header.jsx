@@ -52,7 +52,7 @@ const Header = () => {
             </ul>
           </nav>
           <div className={s.buttonsBlock}>
-            {isAuth ? <CartButton /> : <AuthButtons />}
+            {isAuth || pathname !== "/" ? <CartButton /> : <AuthButtons />}
           </div>
         </div>
       </div>
