@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { setScroll } from "../../utils/utils";
 
 const initialState = {
   items: [],
@@ -64,6 +65,7 @@ const slice = createSlice({
     },
     setIsOpen: (state, { payload }) => {
       state.isOpen = payload;
+      setScroll(!payload);
     },
   },
 });
