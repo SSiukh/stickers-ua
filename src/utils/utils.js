@@ -40,3 +40,9 @@ export const validationSchemas = {
       .required("Паролі повинні співпадати"),
   },
 };
+
+export const setScroll = (status) => {
+  status
+    ? (document.body.style.overflow = "unset")
+    : (document.body.style.overflow = "hidden");
+};

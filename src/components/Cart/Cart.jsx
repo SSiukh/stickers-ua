@@ -6,6 +6,7 @@ import { Button, IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { setIsOpen } from "../../redux/cart/slice";
 import { useRef } from "react";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
   const overlay = useRef();
@@ -47,9 +48,16 @@ const Cart = () => {
             <p className={s.allPriceText}>Загальна сума</p>
             <p className={s.allPrice}>{totalPrice} грн</p>
           </div>
-          <Button size="large" color="primary" variant="contained">
-            Оформити замовлення
-          </Button>
+          <Link to="/order">
+            <Button
+              fullWidth={true}
+              size="large"
+              color="primary"
+              variant="contained"
+            >
+              Оформити замовлення
+            </Button>
+          </Link>
         </div>
       </div>
     </div>

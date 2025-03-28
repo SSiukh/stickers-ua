@@ -8,12 +8,16 @@ import {
   selectTotalPrice,
 } from "../../redux/cart/selectors";
 import { setIsOpen } from "../../redux/cart/slice";
+import { selectIsLoggedIn } from "../../redux/auth/selectors";
+import PersonIcon from "@mui/icons-material/Person";
+import { Link } from "react-router-dom";
 
 const CartButton = () => {
   const totalPrice = useSelector(selectTotalPrice);
   const qty = useSelector(selectCartQty);
   const dispatch = useDispatch();
   const isOpen = useSelector(selectCartIsOpen);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   return (
     <div className={s.container}>
@@ -27,6 +31,13 @@ const CartButton = () => {
           <ShoppingCartIcon />
         </Badge>
       </IconButton>
+      {isLoggedIn && (
+        <Link to="/myaccount">
+          <IconButton>
+            <PersonIcon />
+          </IconButton>
+        </Link>
+      )}
     </div>
   );
 };

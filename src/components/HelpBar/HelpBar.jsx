@@ -1,16 +1,18 @@
 import { Button, IconButton, TextField } from "@mui/material";
 import s from "./HelpBar.module.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { selectKeyword } from "../../redux/products/selectors";
+import { selectColor, selectKeyword } from "../../redux/products/selectors";
 import { setColor, setKeyword } from "../../redux/products/slice";
 import stickers from "../../data/stickers.json";
 import { FaCircle } from "react-icons/fa";
+import clsx from "clsx";
 
 const HelpBar = () => {
   const dispatch = useDispatch();
   const keyword = useSelector(selectKeyword);
   const allColors = stickers.map((item) => item.color);
   const colors = [...new Set(allColors)];
+  const currentColor = useSelector(selectColor);
 
   return (
     <div className={s.container}>
@@ -29,7 +31,13 @@ const HelpBar = () => {
           <p className={s.colorText}>Виберіть кольори: </p>
           <ul className={s.colorsList}>
             {colors.map((color) => (
-              <li className={s.colorItem} key={color}>
+              <li
+                className={clsx(
+                  s.colorItem,
+                  currentColor === color && s.borderedColorItem
+                )}
+                key={color}
+              >
                 <IconButton onClick={() => dispatch(setColor(color))}>
                   <FaCircle color={color} />
                 </IconButton>

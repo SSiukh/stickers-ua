@@ -8,12 +8,13 @@ import PrivateRoute from "./PrivateRoute";
 const HomePage = lazy(() => import("../pages/HomePage"));
 const CatalogPage = lazy(() => import("../pages/CatalogPage"));
 const NotFoundPage = lazy(() => import("../pages/NotFoundPage/NotFoundPage"));
-const WishListPage = lazy(() => import("../pages/WishListPage"));
+const PersonalAccount = lazy(() => import("../pages/PersonalAccount"));
 const ProductCardPage = lazy(() =>
   import("../pages/ProductCardPage/ProductCardPage")
 );
 const LoginPage = lazy(() => import("../pages/LoginPage"));
 const RegisterPage = lazy(() => import("../pages/RegisterPage"));
+const Order = lazy(() => import("../pages/Order"));
 
 function App() {
   return (
@@ -23,10 +24,11 @@ function App() {
           <Route index element={<HomePage />} />
           <Route path="catalog" element={<CatalogPage />} />
           <Route
-            path="wishlist"
-            element={<PrivateRoute component={<WishListPage />} />}
+            path="myaccount"
+            element={<PrivateRoute component={<PersonalAccount />} />}
           />
           <Route path="catalog/:productId" element={<ProductCardPage />} />
+          <Route path="order" element={<Order />} />
           <Route
             path="/login"
             element={<RestrictedRoute component={<LoginPage />} />}
