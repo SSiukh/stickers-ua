@@ -7,6 +7,7 @@ import s from "./Discount.module.scss";
 import ProductCard from "../ProductCard/ProductCard";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { IconButton } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const Discount = () => {
   const swiperRef = useRef(null);
@@ -46,7 +47,9 @@ const Discount = () => {
               <div className="swiper-wrapper">
                 {filteredStickers.map((sticker) => (
                   <div key={sticker.id} className="swiper-slide">
-                    <ProductCard stickers={sticker} />
+                    <Link to={`/catalog/${sticker.id}`}>
+                      <ProductCard stickers={sticker} />
+                    </Link>
                   </div>
                 ))}
               </div>

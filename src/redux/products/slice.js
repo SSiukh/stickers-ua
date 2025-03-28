@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
+import stickers from "../../data/stickers.json"; //api з бази
 
 const initialState = {
-  items: [],
+  items: stickers,
   filter: {
     keyword: "",
     category: "Всі категорії",
