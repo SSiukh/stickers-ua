@@ -33,7 +33,32 @@
 }
 
 .infoContainer {
+  margin-top: 20px;
   padding: 12px;
   border: 1px solid $beige-border;
   border-radius: 20px;
+
+  .infoBlock {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding-left: 10px;
+
+    .infoMainBlock {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+
+      .icon {
+        color: #f2e8cf;
+      }
+
+      .location {
+        font-weight: 700;
+        font-size: 14px;
+        color: #f2e8cf;
+      }
+    }
+  }
 }
