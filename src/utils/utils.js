@@ -9,6 +9,7 @@ export const regexes = {
   email: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
   password:
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d!@#$%^&*()_+={}\[\]:;<>.,?/~`|-]{8,}$/,
+  phoneNumber: /^\d{7,10}$/,
 };
 
 export const validationSchemas = {
@@ -38,6 +39,20 @@ export const validationSchemas = {
     repeatPassword: Yup.string()
       .oneOf([Yup.ref("password"), null], "Паролі повинні співпадати")
       .required("Паролі повинні співпадати"),
+  },
+  contact: {
+    lastName: Yup.string()
+      .min(2, "Занадто коротке")
+      .max(50, "Занадто довге")
+      .required("Прізвище обов'язкове до заповнення"),
+    firstName: Yup.string()
+      .min(2, "Занадто коротке")
+      .max(50, "Занадто довге")
+      .required("Ім'я обов'язкове до заповнення"),
+    middleName: Yup.string().min(2, "Занадто коротке").max(50, "Занадто довге"),
+    phoneNumber: Yup.string()
+      .matches(regexes.phoneNumber, "Номер повинен складатись із 9 цифр")
+      .required("Номер телефону обов'язковий до заповнення"),
   },
 };
 

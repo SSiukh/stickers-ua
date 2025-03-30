@@ -1,0 +1,74 @@
+@use "../../styles/variables.scss" as *;
+
+.container {
+  background-color: #2031182d;
+  backdrop-filter: blur(10px);
+  border: 1px solid $beige;
+  border-radius: 30px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .form {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+
+    .title {
+      width: 100%;
+      text-align: start;
+      font-weight: 700;
+      font-size: 24px;
+      color: #f2e8cf;
+      margin-bottom: 20px;
+    }
+
+    .button {
+      margin-top: 20px;
+    }
+  }
+}
+
+.infoContainer {
+  padding: 12px;
+  border: 1px solid $beige-border;
+  border-radius: 20px;
+
+  .infoBlock {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 10px;
+    .mainInfoBlock {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+
+      .icon {
+        color: #f2e8cf;
+      }
+
+      .textBlock {
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+
+        .fullname {
+          font-weight: 700;
+          font-size: 14px;
+          color: #f2e8cf;
+        }
+        .phoneNumber {
+          font-weight: 700;
+          font-size: 14px;
+          color: rgba(242, 232, 207, 0.75);
+        }
+      }
+    }
+  }
+}

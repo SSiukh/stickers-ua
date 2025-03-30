@@ -47,6 +47,7 @@ const ProductCard = ({ stickers }) => {
           <p className={s.title}>{name}</p>
           <IconButton
             onClick={(e) => {
+              e.preventDefault();
               e.stopPropagation();
               handleWish();
             }}
@@ -65,6 +66,7 @@ const ProductCard = ({ stickers }) => {
           {discount === 0 && <p className={s.realPrice}>{price} грн</p>}
           <IconButton
             onClick={(e) => {
+              e.preventDefault();
               e.stopPropagation();
               addToCart({ id, name, path, price, discount });
             }}
