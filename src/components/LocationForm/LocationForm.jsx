@@ -10,6 +10,8 @@ import { getLocationsByName } from "../../redux/locations/operations";
 import { useState } from "react";
 import clsx from "clsx";
 import { MdLocationOn } from "react-icons/md";
+import { setLocation } from "../../redux/order/slice";
+import { selectLocation } from "../../redux/order/selectors";
 
 const LocationForm = () => {
   const dispatch = useDispatch();
@@ -17,6 +19,7 @@ const LocationForm = () => {
   const settlements = useSelector(selectSettlements);
   const [inputValue, setInputValue] = useState(keyword);
   const [formIsOpen, setFormIsOpen] = useState(true);
+  const location = useSelector(selectLocation);
 
   const handleInputChange = (event, newInputValue) => {
     setInputValue(newInputValue);
@@ -35,7 +38,7 @@ const LocationForm = () => {
 
   const handleSubmit = () => {
     setFormIsOpen(false);
-    //   dispatch location order
+    dispatch(setLocation(inputValue));
   };
 
   return (
@@ -64,7 +67,10 @@ const LocationForm = () => {
         </div>
       ) : (
         <div className={s.infoBlock}>
-          <MdLocationOn />
+          <div className={s.infoMainBlock}>
+            <MdLocationOn size={20} className={s.icon} />
+            <p className={s.location}>{location}</p>
+          </div>
           <Button onClick={() => setFormIsOpen(true)}>Змінити</Button>
         </div>
       )}
