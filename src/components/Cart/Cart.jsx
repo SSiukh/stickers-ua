@@ -6,13 +6,15 @@ import { Button, IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { setIsOpen } from "../../redux/cart/slice";
 import { useRef } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const Cart = () => {
   const overlay = useRef();
   const totalPrice = useSelector(selectTotalPrice);
   const elements = useSelector(selectCartItems);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleOverlayClose = (e) => {
     if (e.target !== overlay.current) {
@@ -20,6 +22,15 @@ const Cart = () => {
     }
 
     dispatch(setIsOpen(false));
+  };
+
+  const handleOrder = () => {
+    if (!elements.length) {
+      toast.error("Додайте товари в кошик");
+      return;
+    }
+
+    navigate("/order");
   };
 
   return (
@@ -48,16 +59,18 @@ const Cart = () => {
             <p className={s.allPriceText}>Загальна сума</p>
             <p className={s.allPrice}>{totalPrice} грн</p>
           </div>
-          <Link to="/order">
-            <Button
-              fullWidth={true}
-              size="large"
-              color="primary"
-              variant="contained"
-            >
-              Оформити замовлення
-            </Button>
-          </Link>
+          <Button
+            fullWidth={true}
+            size="large"
+            color="primary"
+            variant="contained"
+            onClick={() => {
+              dispatch(setIsOpen(false));
+              handleOrder();
+            }}
+          >
+            Оформити замовлення
+          </Button>
         </div>
       </div>
     </div>

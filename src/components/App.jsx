@@ -14,7 +14,7 @@ const ProductCardPage = lazy(() =>
 );
 const LoginPage = lazy(() => import("../pages/LoginPage"));
 const RegisterPage = lazy(() => import("../pages/RegisterPage"));
-const Order = lazy(() => import("../pages/Order"));
+const Order = lazy(() => import("../pages/Order/Order"));
 
 function App() {
   return (

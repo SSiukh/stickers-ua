@@ -2,10 +2,10 @@ import s from "./LoginForm.module.scss";
 import { validationSchemas } from "../../utils/utils";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
-import { login } from "../../redux/auth/slice";
 import { useFormik } from "formik";
 import { Button, TextField } from "@mui/material";
 import { Link } from "react-router-dom";
+import { login } from "../../redux/auth/slice";
 
 const LoginForm = () => {
   const dispatch = useDispatch();

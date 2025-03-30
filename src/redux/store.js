@@ -3,6 +3,8 @@ import { cartReducer } from "./cart/slice";
 import { wishReducer } from "./wish/slice";
 import { productsReducer } from "./products/slice";
 import { authReducer } from "./auth/slice";
+import { orderReducer } from "./order/slice";
+import { locationsReducer } from "./locations/slice";
 import {
   persistStore,
   persistReducer,
@@ -28,6 +30,8 @@ export const store = configureStore({
     wish: wishReducer,
     products: productsReducer,
     auth: authReducer,
+    order: orderReducer,
+    locations: locationsReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

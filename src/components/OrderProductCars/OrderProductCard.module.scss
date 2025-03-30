@@ -1,0 +1,44 @@
+@use "../../styles/variables.scss" as *;
+
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 15px;
+  background-color: $darkGreen;
+  border-radius: 24px;
+
+  .cardMain {
+    display: flex;
+    gap: 13px;
+
+    .img {
+      width: 50px;
+      aspect-ratio: 1 / 1;
+      border: 1px solid #fff;
+      border-radius: 16px;
+    }
+    .infoBlock {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 3px 0;
+
+      .name {
+        font-weight: 700;
+        font-size: 14px;
+        color: #f2e8cf;
+      }
+      .qtyToPrice {
+        font-weight: 500;
+        font-size: 12px;
+        color: rgba(242, 232, 207, 0.75);
+      }
+    }
+  }
+  .price {
+    font-weight: 700;
+    font-size: 14px;
+    color: #f2e8cf;
+  }
+}
