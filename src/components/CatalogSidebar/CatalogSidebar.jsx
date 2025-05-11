@@ -7,9 +7,8 @@ import { GiCheckeredDiamond } from "react-icons/gi";
 import { BiSolidLeaf } from "react-icons/bi";
 import { WiStars } from "react-icons/wi";
 import { MdOutlineTexture } from "react-icons/md";
-import { RxMix } from "react-icons/rx";
 
-const categoriesOne = [
+const categories = [
   { id: 1, name: "Всі категорії", icon: <MdFilterList /> },
   { id: 2, name: "Стандартні", icon: <PiSticker /> },
   { id: 3, name: "Голографічні", icon: <PiGradient /> },
@@ -19,26 +18,12 @@ const categoriesOne = [
   { id: 7, name: "Текстурні", icon: <MdOutlineTexture /> },
 ];
 
-const categoriesTwo = [
-  { id: 1, name: "Голографічні + космічні", icon: <RxMix /> },
-  { id: 2, name: "Голографічні + текстурні", icon: <RxMix /> },
-  { id: 3, name: "Матові + хромові", icon: <RxMix /> },
-  { id: 4, name: "Космічні + хромові", icon: <RxMix /> },
-];
-
 const CatalogSidebar = () => {
   return (
     <div className={s.container}>
       <p className={s.title}>Категорії</p>
       <ul className={s.list}>
-        {categoriesOne.map((category) => (
-          <li key={category.id}>
-            <Category category={category.name} icon={category.icon} />
-          </li>
-        ))}
-      </ul>
-      <ul className={s.list}>
-        {categoriesTwo.map((category) => (
+        {categories.map((category) => (
           <li key={category.id}>
             <Category category={category.name} icon={category.icon} />
           </li>

@@ -4,7 +4,11 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Button, IconButton, SpeedDial, SpeedDialAction } from "@mui/material";
 import PhoneEnabledIcon from "@mui/icons-material/PhoneEnabled";
 import { useDispatch, useSelector } from "react-redux";
-import { selectItems } from "../../redux/products/selectors";
+import {
+  selectError,
+  selectIsLoading,
+  selectItems,
+} from "../../redux/products/selectors";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { FaCircle } from "react-icons/fa";
@@ -13,22 +17,39 @@ import TelegramIcon from "@mui/icons-material/Telegram";
 import { selectCartItems } from "../../redux/cart/selectors";
 import { addCart } from "../../redux/cart/slice";
 import toast from "react-hot-toast";
+import { useEffect } from "react";
+import { fetchProductById } from "../../redux/products/operations";
+import Loader from "../../components/Loader/Loader";
 
 const ProductCardPage = () => {
-  const stickers = useSelector(selectItems);
   const { productId } = useParams();
-  const cartProducts = useSelector(selectCartItems);
   const dispatch = useDispatch();
+  const isLoading = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
+  const stickers = useSelector(selectItems);
+  const cartProducts = useSelector(selectCartItems);
 
-  const { id, name, price, discount, type, color, path, info } = stickers.find(
-    (item) => item.id === +productId
-  );
-  const isInCart = cartProducts.find((item) => item.id === id);
+  useEffect(() => {
+    dispatch(fetchProductById(productId));
+  }, [dispatch, productId]);
+
+  if (!stickers?.length) {
+    return <Loader />;
+  }
+  if (error) {
+    toast.error("Помилка завантаження");
+  }
+
+  const { _id, name, price, discount, type, color, photo, info } =
+    stickers.find((item) => item._id === productId);
+  const isInCart = cartProducts.find((item) => item.id === _id);
 
   const otherImages = stickers.filter((item) => item.name === name);
 
   const addToCart = (object) => {
-    const isExistIndex = cartProducts.findIndex((sticker) => sticker.id === id);
+    const isExistIndex = cartProducts.findIndex(
+      (sticker) => sticker.id === _id
+    );
 
     if (isExistIndex === -1) {
       dispatch(addCart({ ...object, qty: 1 }));
@@ -38,7 +59,9 @@ const ProductCardPage = () => {
     toast.error("Товар вже присутній в кошику");
   };
 
-  return (
+  return isLoading ? (
+    <Loader />
+  ) : (
     <div>
       <BackLayout>
         <div className={s.container}>
@@ -46,22 +69,18 @@ const ProductCardPage = () => {
             <div className={s.imageBlock}>
               <ul className={s.otherImages}>
                 {otherImages.map((item) => (
-                  <li className={s.otherImagesItem} key={item.id}>
+                  <li className={s.otherImagesItem} key={item._id}>
                     <Link to={`/catalog/${item.id}`}>
                       <img
                         className={s.otherImagesImg}
-                        src={`../${item.path}`}
+                        src={item.photo}
                         alt="other images"
                       />
                     </Link>
                   </li>
                 ))}
               </ul>
-              <img
-                className={s.mainImage}
-                src={`../${path}`}
-                alt="Sticker image"
-              />
+              <img className={s.mainImage} src={photo} alt="Sticker image" />
             </div>
             <p className={s.description}>{info}</p>
           </div>
@@ -82,7 +101,10 @@ const ProductCardPage = () => {
               <p className={s.colorText}>Кольори:</p>
               <ul className={s.colors}>
                 {otherImages.map((item) => (
-                  <li className={color === item.color && s.color} key={item.id}>
+                  <li
+                    className={color === item.color && s.color}
+                    key={item._id}
+                  >
                     <Link to={`/catalog/${item.id}`}>
                       <IconButton sx={{ zIndex: 5 }}>
                         <FaCircle color={item.color} />
@@ -95,7 +117,7 @@ const ProductCardPage = () => {
             <div className={s.actionBlock}>
               <Button
                 onClick={() => {
-                  addToCart({ id, name, path, price, discount });
+                  addToCart({ _id, name, photo, price, discount });
                 }}
                 size="large"
                 color={isInCart ? "success" : "primary"}

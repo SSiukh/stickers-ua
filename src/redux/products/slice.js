@@ -1,8 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
-import stickers from "../../data/stickers.json"; //api з бази
+import { fetchProducts, addProduct, fetchProductById } from "./operations";
+import { logout } from "../auth/operations";
+
+const handlePending = (state) => {
+  state.loading = true;
+};
+
+const handleRejected = (state, { payload }) => {
+  state.error = payload;
+};
 
 const initialState = {
-  items: stickers,
+  items: [],
+  loading: false,
+  error: null,
   filter: {
     keyword: "",
     category: "Всі категорії",
@@ -24,9 +35,31 @@ const slice = createSlice({
       state.filter.color = payload;
     },
   },
-  // extraReducers: (builder) => {
-  //   builder.addCase();
-  // },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchProducts.pending, handlePending)
+      .addCase(fetchProducts.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.error = null;
+        state.items = payload.data.data;
+      })
+      .addCase(fetchProducts.rejected, handleRejected)
+      .addCase(fetchProductById.rejected, handleRejected)
+      .addCase(fetchProductById.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.error = null;
+        state.items.push(payload.data);
+      })
+      .addCase(fetchProductById.pending, handlePending)
+      .addCase(addProduct.pending, handlePending)
+      .addCase(addProduct.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.error = null;
+        state.items.push(payload);
+      })
+      .addCase(addProduct.rejected, handleRejected)
+      .addCase(logout.fulfilled, () => initialState);
+  },
 });
 
 export const { setCategory, setKeyword, setColor } = slice.actions;

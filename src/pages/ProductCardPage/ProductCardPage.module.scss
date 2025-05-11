@@ -23,6 +23,7 @@
         .otherImagesItem {
           width: 100px;
           .otherImagesImg {
+            aspect-ratio: 1 / 1;
             border: 1px solid $beige;
             border-radius: 21px;
             box-shadow: 0 0 10px 0 rgba(242, 232, 207, 0.5);
@@ -30,6 +31,7 @@
         }
       }
       .mainImage {
+        aspect-ratio: 1 / 1;
         border: 1px solid #f2e8cf;
         border-radius: 21px;
         width: calc(100% - 120px);
