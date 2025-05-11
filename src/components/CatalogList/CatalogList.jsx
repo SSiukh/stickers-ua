@@ -4,17 +4,30 @@ import { useSelector } from "react-redux";
 import {
   selectCategory,
   selectColor,
+  selectError,
+  selectIsLoading,
   selectItems,
   selectKeyword,
 } from "../../redux/products/selectors";
 import { Link } from "react-router-dom";
 import { stickerTypes } from "../../utils/utils";
+import Loader from "../Loader/Loader";
+import toast from "react-hot-toast";
 
 const CatalogList = () => {
   const category = useSelector(selectCategory);
   const keyword = useSelector(selectKeyword);
   const stickers = useSelector(selectItems);
   const color = useSelector(selectColor);
+  const isLoading = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
+
+  if (!stickers?.length) {
+    return <Loader />;
+  }
+  if (error) {
+    toast.error("Помилка завантаження");
+  }
 
   const filteredStickers =
     category === "Всі категорії"
@@ -28,7 +41,9 @@ const CatalogList = () => {
     ? filteredStickers
     : filteredStickers.filter((sticker) => sticker.color === color);
 
-  return (
+  return isLoading ? (
+    <Loader />
+  ) : (
     <div className={s.container}>
       <ul className={s.list}>
         {colorFiltered.map((sticker) => (
