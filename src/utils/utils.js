@@ -12,6 +12,15 @@ export const regexes = {
   phoneNumber: /^\d{7,10}$/,
 };
 
+export const stickerTypes = {
+  standard: "Стандартні",
+  holographic: "Голографічні",
+  chrome: "Хромові",
+  mat: "Матові",
+  space: "Космічні",
+  texture: "Текстурні",
+};
+
 export const validationSchemas = {
   login: {
     email: Yup.string()
@@ -53,6 +62,23 @@ export const validationSchemas = {
     phoneNumber: Yup.string()
       .matches(regexes.phoneNumber, "Номер повинен складатись із 9 цифр")
       .required("Номер телефону обов'язковий до заповнення"),
+  },
+  sticker: {
+    name: Yup.string().required("Обов'язкове поле"),
+    type: Yup.array()
+      .of(Yup.string().oneOf(Object.keys(stickerTypes), "Недопустиме значення"))
+      .min(1, "Оберіть хоча б один тип")
+      .required("Обов'язкове поле"),
+    info: Yup.string()
+      .min(30, "Занадто короткий")
+      .max(300, "занадто довгий")
+      .required("Обов'язкове поле"),
+    price: Yup.number().required("Обов'язкове поле"),
+    discount: Yup.number().required("Обов'язкове поле"),
+    quantity: Yup.number().required("Обов'язкове поле"),
+    photo: Yup.mixed().required("Оберіть фото"),
+    color: Yup.string().required("Обов'язкове поле"),
+    onAbout: Yup.boolean().required("Обов'язкове поле"),
   },
 };
 

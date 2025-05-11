@@ -8,17 +8,20 @@ import {
   selectKeyword,
 } from "../../redux/products/selectors";
 import { Link } from "react-router-dom";
+import { stickerTypes } from "../../utils/utils";
 
 const CatalogList = () => {
   const category = useSelector(selectCategory);
   const keyword = useSelector(selectKeyword);
   const stickers = useSelector(selectItems);
   const color = useSelector(selectColor);
+
   const filteredStickers =
     category === "Всі категорії"
       ? stickers.filter((item) => item.name.includes(keyword))
       : stickers.filter(
-          (item) => item.type === category && item.name.includes(keyword)
+          (item) =>
+            stickerTypes[item.type] === category && item.name.includes(keyword)
         );
 
   const colorFiltered = !color
@@ -29,8 +32,8 @@ const CatalogList = () => {
     <div className={s.container}>
       <ul className={s.list}>
         {colorFiltered.map((sticker) => (
-          <li className={s.item} key={sticker.id}>
-            <Link to={`/catalog/${sticker.id}`}>
+          <li className={s.item} key={sticker._id}>
+            <Link to={`/catalog/${sticker._id}`}>
               <ProductCard stickers={sticker} />
             </Link>
           </li>

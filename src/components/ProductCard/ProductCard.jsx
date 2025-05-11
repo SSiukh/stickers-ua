@@ -12,13 +12,15 @@ import { useNavigate } from "react-router-dom";
 import { selectIsLoggedIn } from "../../redux/auth/selectors";
 
 const ProductCard = ({ stickers }) => {
-  const { id, name, path, price, discount } = stickers;
+  const { _id, name, photo, price, discount } = stickers;
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const cartProducts = useSelector(selectCartItems);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const addToCart = (object) => {
-    const isExistIndex = cartProducts.findIndex((sticker) => sticker.id === id);
+    const isExistIndex = cartProducts.findIndex(
+      (sticker) => sticker.id === _id
+    );
 
     if (isExistIndex === -1) {
       dispatch(addCart({ ...object, qty: 1 }));
@@ -28,7 +30,7 @@ const ProductCard = ({ stickers }) => {
     toast.error("Товар вже присутній в кошику");
   };
 
-  const isInCart = cartProducts.find((item) => item.id === id);
+  const isInCart = cartProducts.find((item) => item.id === _id);
   const handleWish = () => {
     if (!isLoggedIn) {
       navigate("/login");
@@ -41,7 +43,9 @@ const ProductCard = ({ stickers }) => {
 
   return (
     <div className={clsx("swiper-slide", s.card)}>
-      <img className={s.img} src={path} alt={name} />
+      <div className={s.imgBlock}>
+        <img className={s.img} src={photo} alt={name} />
+      </div>
       <div className={s.mainBlock}>
         <div className={s.titleBlock}>
           <p className={s.title}>{name}</p>
@@ -68,7 +72,7 @@ const ProductCard = ({ stickers }) => {
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
-              addToCart({ id, name, path, price, discount });
+              addToCart({ _id, name, photo, price, discount });
             }}
             color="secondary"
           >
