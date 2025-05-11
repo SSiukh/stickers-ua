@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import * as Yup from "yup";
 import s from "./RegisterForm.module.scss";
 import { validationSchemas } from "../../utils/utils";
-import { register } from "../../redux/auth/slice";
+import { register } from "../../redux/auth/operations";
 import { useFormik } from "formik";
 import { Button, TextField } from "@mui/material";
 import { Link } from "react-router-dom";
