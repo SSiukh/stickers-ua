@@ -10,6 +10,7 @@ import { refreshUser } from "../redux/auth/operations";
 import { selectIsLoggedIn, selectIsRefreshing } from "../redux/auth/selectors";
 import Loader from "./Loader/Loader";
 import CreateStickers from "./CreateStickers/CreateStickers";
+import { fetchProducts } from "../redux/products/operations";
 
 const HomePage = lazy(() => import("../pages/HomePage"));
 const CatalogPage = lazy(() => import("../pages/CatalogPage"));
@@ -32,6 +33,7 @@ function App() {
     if (isLoggedIn) {
       dispatch(refreshUser());
     }
+    dispatch(fetchProducts());
   }, [dispatch, isLoggedIn]);
 
   return isRefreshing ? (
