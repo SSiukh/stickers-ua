@@ -2,18 +2,20 @@ import { useEffect, useRef, useState } from "react";
 import Swiper from "swiper";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
-import stickers from "../../data/stickers.json";
 import s from "./Discount.module.scss";
 import ProductCard from "../ProductCard/ProductCard";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { IconButton } from "@mui/material";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectItems } from "../../redux/products/selectors";
 
 const Discount = () => {
   const swiperRef = useRef(null);
   const [swiperInstance, setSwiperInstance] = useState(null);
   const [isFirstSlide, setIsFirstSlide] = useState(true);
   const [isLastSlide, setIsLastSlide] = useState(false);
+  const stickers = useSelector(selectItems);
 
   useEffect(() => {
     if (swiperRef.current) {
@@ -46,8 +48,8 @@ const Discount = () => {
             <div className="discount-swiper" ref={swiperRef}>
               <div className="swiper-wrapper">
                 {filteredStickers.map((sticker) => (
-                  <div key={sticker.id} className="swiper-slide">
-                    <Link to={`/catalog/${sticker.id}`}>
+                  <div key={sticker._id} className="swiper-slide">
+                    <Link to={`/catalog/${sticker._id}`}>
                       <ProductCard stickers={sticker} />
                     </Link>
                   </div>
