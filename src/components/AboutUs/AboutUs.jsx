@@ -20,6 +20,8 @@ const AboutUs = () => {
   const stickers = useSelector(selectItems);
 
   useEffect(() => {
+    if (!stickers.length) return;
+
     const swiper = new Swiper(".about-swiper", {
       effect: "coverflow",
       centeredSlides: true,
@@ -40,7 +42,7 @@ const AboutUs = () => {
       swiper.off("slideChange");
       swiper.destroy();
     };
-  }, []);
+  }, [stickers]);
 
   if (!stickers.length) return null;
 
