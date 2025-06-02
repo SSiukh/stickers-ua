@@ -49,12 +49,12 @@ const Order = () => {
               <p className={s.value}>{totalPrice} грн.</p>
             </div>
             <ul className={s.productsList}>
-              {products.map(({ id, name, qty, path, price, discount }) => (
+              {products.map(({ id, name, qty, photo, price, discount }) => (
                 <li key={id}>
                   <OrderProductCard
                     name={name}
                     qty={qty}
-                    path={path}
+                    photo={photo}
                     price={price}
                     discount={discount}
                   />

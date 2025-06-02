@@ -8,13 +8,13 @@ import { useDispatch } from "react-redux";
 
 const CartProductCard = ({ data }) => {
   const dispatch = useDispatch();
-  const { id, path, name, price, discount, qty } = data;
+  const { id, photo, name, price, discount, qty } = data;
 
   return (
     <div className={s.card}>
       <div className={s.cardTop}>
         <div className={s.cardTopMain}>
-          <img className={s.img} src={path} alt="card product" />
+          <img className={s.img} src={photo} alt="card product" />
           <p className={s.name}>{name}</p>
         </div>
         <IconButton
