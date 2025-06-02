@@ -1,10 +1,10 @@
 import s from "./OrderProductCard.module.scss";
 
-const OrderProductCard = ({ name, qty, path, price, discount }) => {
+const OrderProductCard = ({ name, qty, photo, price, discount }) => {
   return (
     <div className={s.card}>
       <div className={s.cardMain}>
-        <img className={s.img} src={path} alt="product" />
+        <img className={s.img} src={photo} alt="product" />
         <div className={s.infoBlock}>
           <p className={s.name}>{name}</p>
           <p className={s.qtyToPrice}>
