@@ -114,3 +114,119 @@
     }
   }
 }
+
+@media screen and (max-width: 1280px) {
+  .container {
+    .rightBlock {
+      .nameBlock {
+        margin-bottom: 15px;
+
+        .name {
+          font-size: 36px;
+        }
+      }
+      .info {
+        gap: 7px;
+        margin-bottom: 20px;
+
+        .price {
+          font-size: 16px;
+        }
+        .category {
+          font-size: 16px;
+        }
+      }
+      .colorBlock {
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+
+        .colorText {
+          font-size: 16px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+    overflow: auto;
+    height: calc(100vh - 140px);
+    padding-right: 5px;
+
+    &::-webkit-scrollbar {
+      width: 3px;
+      height: 3px;
+      margin-right: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: $beige-border;
+      border-radius: 3px;
+    }
+
+    .leftBlock {
+      width: 100%;
+      .description {
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 126%;
+        color: #f2e8cf;
+      }
+      .imageBlock {
+        .otherImages {
+          .otherImagesItem {
+            width: 50px;
+            .otherImagesImg {
+              border-radius: 10px;
+            }
+          }
+        }
+        .mainImage {
+          max-width: 300px;
+          min-width: 200px;
+        }
+      }
+    }
+
+    .rightBlock {
+      width: 100%;
+      padding: 30px;
+      padding-bottom: 120px;
+
+      .nameBlock {
+        margin-bottom: 20px;
+
+        .name {
+          font-size: 24px;
+        }
+      }
+      .info {
+        gap: 7px;
+        margin-bottom: 20px;
+
+        .price {
+          font-size: 14px;
+        }
+        .category {
+          font-size: 14px;
+        }
+      }
+      .colorBlock {
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+
+        .colorText {
+          font-size: 14px;
+        }
+      }
+      .actionBlock {
+        width: calc(100% - 60px);
+      }
+    }
+  }
+}

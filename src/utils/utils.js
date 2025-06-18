@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import { useLocation } from "react-router-dom";
 import * as Yup from "yup";
 
 export const setNavClass = ({ isActive }, s) => {
@@ -13,12 +14,17 @@ export const regexes = {
 };
 
 export const stickerTypes = {
+  all: "Всі",
   standard: "Стандартні",
   holographic: "Голографічні",
   chrome: "Хромові",
   mat: "Матові",
   space: "Космічні",
   texture: "Текстурні",
+};
+
+export const useQuery = () => {
+  return new URLSearchParams(useLocation().search);
 };
 
 export const validationSchemas = {

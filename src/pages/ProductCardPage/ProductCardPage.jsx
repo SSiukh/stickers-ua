@@ -2,12 +2,14 @@ import s from "./ProductCardPage.module.scss";
 import BackLayout from "../../components/BackLayout/BackLayout";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Button, IconButton, SpeedDial, SpeedDialAction } from "@mui/material";
+import { useMediaQuery } from "react-responsive";
 import PhoneEnabledIcon from "@mui/icons-material/PhoneEnabled";
 import { useDispatch, useSelector } from "react-redux";
 import {
   selectError,
   selectIsLoading,
   selectItems,
+  selectCurrentItem,
 } from "../../redux/products/selectors";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -28,27 +30,28 @@ const ProductCardPage = () => {
   const error = useSelector(selectError);
   const stickers = useSelector(selectItems);
   const cartProducts = useSelector(selectCartItems);
+  const product = useSelector(selectCurrentItem);
+  const isMobile = useMediaQuery({ maxWidth: 380 });
 
   useEffect(() => {
     dispatch(fetchProductById(productId));
   }, [dispatch, productId]);
 
-  if (!stickers?.length) {
-    return <Loader />;
-  }
+  if (isLoading || !product) return <Loader />;
+
   if (error) {
     toast.error("Помилка завантаження");
   }
 
-  const { _id, name, price, discount, type, color, photo, info } =
-    stickers.find((item) => item._id === productId);
-  const isInCart = cartProducts.find((item) => item.id === _id);
+  const { _id, name, price, discount, type, color, photo, info } = product;
+
+  const isInCart = cartProducts.find((item) => item._id === _id);
 
   const otherImages = stickers.filter((item) => item.name === name);
 
   const addToCart = (object) => {
     const isExistIndex = cartProducts.findIndex(
-      (sticker) => sticker.id === _id
+      (sticker) => sticker._id === _id
     );
 
     if (isExistIndex === -1) {
@@ -70,7 +73,7 @@ const ProductCardPage = () => {
               <ul className={s.otherImages}>
                 {otherImages.map((item) => (
                   <li className={s.otherImagesItem} key={item._id}>
-                    <Link to={`/catalog/${item.id}`}>
+                    <Link to={`/catalog/${item._id}`}>
                       <img
                         className={s.otherImagesImg}
                         src={item.photo}
@@ -105,7 +108,7 @@ const ProductCardPage = () => {
                     className={color === item.color && s.color}
                     key={item._id}
                   >
-                    <Link to={`/catalog/${item.id}`}>
+                    <Link to={`/catalog/${item._id}`}>
                       <IconButton sx={{ zIndex: 5 }}>
                         <FaCircle color={item.color} />
                       </IconButton>
@@ -119,7 +122,7 @@ const ProductCardPage = () => {
                 onClick={() => {
                   addToCart({ _id, name, photo, price, discount });
                 }}
-                size="large"
+                size={isMobile ? "small" : "large"}
                 color={isInCart ? "success" : "primary"}
                 variant="contained"
               >

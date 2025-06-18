@@ -12,10 +12,10 @@
       padding: 80px 60px;
       background-color: #38572a;
       border-radius: 50px;
-      height: 600px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      aspect-ratio: 1 / 1;
 
       .textBlock {
         display: flex;
@@ -37,7 +37,7 @@
 
       .aboutButtons {
         display: flex;
-        align-items: flex-end;
+        align-items: center;
         gap: 30px;
 
         .review {
@@ -85,6 +85,114 @@
       height: auto;
       overflow: hidden;
       padding: 10px;
+    }
+  }
+}
+
+@media screen and (max-width: 1220px) {
+  .aboutUs {
+    .aboutContainer {
+      gap: 30px;
+      .aboutBlock {
+        width: calc((100% - 30px) / 2);
+        padding: 40px 30px;
+
+        .textBlock {
+          gap: 20px;
+
+          .aboutTitle {
+            font-size: 38px;
+          }
+          .aboutText {
+            font-size: 16px;
+          }
+        }
+
+        .aboutButtons {
+          .review {
+            font-size: 16px;
+            padding: 9px 29px;
+          }
+        }
+      }
+
+      .swiper {
+        width: calc((100% - 30px) / 2);
+        height: auto;
+        overflow: hidden;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 990px) {
+  .aboutUs {
+    .aboutContainer {
+      flex-direction: column;
+      gap: 30px;
+      .aboutBlock {
+        width: 500px;
+        padding: 80px 60px;
+
+        .textBlock {
+          gap: 40px;
+
+          .aboutTitle {
+            font-size: 46px;
+          }
+          .aboutText {
+            font-size: 18px;
+          }
+        }
+
+        .aboutButtons {
+          .review {
+            font-size: 20px;
+            padding: 18px 58px;
+          }
+        }
+      }
+
+      .swiper {
+        width: 500px;
+        height: auto;
+        overflow: hidden;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .aboutUs {
+    padding: 40px 0 20px 0;
+    .aboutContainer {
+      gap: 20px;
+      .aboutBlock {
+        width: 300px;
+        padding: 30px 20px;
+
+        .textBlock {
+          gap: 20px;
+
+          .aboutTitle {
+            font-size: 26px;
+          }
+          .aboutText {
+            font-size: 16px;
+          }
+        }
+
+        .aboutButtons {
+          .review {
+            font-size: 16px;
+            padding: 9px 29px;
+          }
+        }
+      }
+
+      .swiper {
+        width: 300px;
+      }
     }
   }
 }

@@ -135,3 +135,62 @@
     }
   }
 }
+
+@media screen and (max-width: 980px) {
+  .container {
+    .mainBlock {
+      .mainTitle {
+        font-size: 22px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+    max-height: calc(100% - 48px);
+    overflow: auto;
+
+    &::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+      margin-right: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: $beige-border;
+      border-radius: 10px;
+
+      &:hover,
+      &:active {
+        background-color: $beige;
+      }
+    }
+
+    .mainBlock {
+      order: 2;
+      max-width: none;
+
+      .mainTitle {
+        font-size: 18px;
+      }
+
+      .formBlock {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        max-height: calc(100% - 48px);
+        overflow: visible;
+        padding: 10px;
+      }
+    }
+
+    .helpBlock {
+      order: 1;
+      width: auto;
+      padding: 35px 20px;
+    }
+  }
+}

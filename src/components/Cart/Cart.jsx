@@ -48,7 +48,7 @@ const Cart = () => {
           </div>
           <ul className={s.list}>
             {elements.map((sticker) => (
-              <li key={sticker.id}>
+              <li key={sticker._id}>
                 <CartProductCard data={sticker} />
               </li>
             ))}

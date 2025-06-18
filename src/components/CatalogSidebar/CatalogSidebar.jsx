@@ -7,21 +7,24 @@ import { GiCheckeredDiamond } from "react-icons/gi";
 import { BiSolidLeaf } from "react-icons/bi";
 import { WiStars } from "react-icons/wi";
 import { MdOutlineTexture } from "react-icons/md";
+import { useMediaQuery } from "react-responsive";
 
 const categories = [
-  { id: 1, name: "Всі категорії", icon: <MdFilterList /> },
-  { id: 2, name: "Стандартні", icon: <PiSticker /> },
-  { id: 3, name: "Голографічні", icon: <PiGradient /> },
-  { id: 4, name: "Хромові", icon: <GiCheckeredDiamond /> },
-  { id: 5, name: "Матові", icon: <BiSolidLeaf /> },
-  { id: 6, name: "Космічні", icon: <WiStars /> },
-  { id: 7, name: "Текстурні", icon: <MdOutlineTexture /> },
+  { id: 1, name: "all", icon: <MdFilterList /> },
+  { id: 2, name: "standard", icon: <PiSticker /> },
+  { id: 3, name: "holographic", icon: <PiGradient /> },
+  { id: 4, name: "chrome", icon: <GiCheckeredDiamond /> },
+  { id: 5, name: "mat", icon: <BiSolidLeaf /> },
+  { id: 6, name: "space", icon: <WiStars /> },
+  { id: 7, name: "texture", icon: <MdOutlineTexture /> },
 ];
 
 const CatalogSidebar = () => {
+  const isTablet = useMediaQuery({ maxWidth: 1000 });
+
   return (
     <div className={s.container}>
-      <p className={s.title}>Категорії</p>
+      {!isTablet && <p className={s.title}>Категорії</p>}
       <ul className={s.list}>
         {categories.map((category) => (
           <li key={category.id}>

@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 
 const CartProductCard = ({ data }) => {
   const dispatch = useDispatch();
-  const { id, photo, name, price, discount, qty } = data;
+  const { _id, photo, name, price, discount, qty } = data;
 
   return (
     <div className={s.card}>
@@ -18,7 +18,7 @@ const CartProductCard = ({ data }) => {
           <p className={s.name}>{name}</p>
         </div>
         <IconButton
-          onClick={() => dispatch(removeCart(id))}
+          onClick={() => dispatch(removeCart(_id))}
           className={s.deleteButton}
           color="secondary"
         >
@@ -29,7 +29,7 @@ const CartProductCard = ({ data }) => {
         <p className={s.price}>{discount === 0 ? price : discount} грн</p>
         <div className={s.qtyBlock}>
           <IconButton
-            onClick={() => dispatch(decreaseQty(id))}
+            onClick={() => dispatch(decreaseQty(_id))}
             size="small"
             color="secondary"
           >
@@ -37,7 +37,7 @@ const CartProductCard = ({ data }) => {
           </IconButton>
           <p className={s.qty}>{qty}</p>
           <IconButton
-            onClick={() => dispatch(addQty(id))}
+            onClick={() => dispatch(addQty(_id))}
             size="small"
             color="secondary"
           >

@@ -3,9 +3,9 @@ import { api } from "../../api/axios";
 
 export const fetchProducts = createAsyncThunk(
   "products/fetchAll",
-  async (_, thunkAPI) => {
+  async (params, thunkAPI) => {
     try {
-      const { data } = await api.get("/stickers");
+      const { data } = await api.get("/stickers", { params });
       return data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

@@ -9,19 +9,33 @@ import { IconButton } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectItems } from "../../redux/products/selectors";
+import { useMediaQuery } from "react-responsive";
 
 const Discount = () => {
   const swiperRef = useRef(null);
   const [swiperInstance, setSwiperInstance] = useState(null);
   const [isFirstSlide, setIsFirstSlide] = useState(true);
   const [isLastSlide, setIsLastSlide] = useState(false);
+  const [slides, setSlides] = useState(3);
   const stickers = useSelector(selectItems);
+  const isTablet = useMediaQuery({ maxWidth: 990 });
+  const isMobile = useMediaQuery({ maxWidth: 640 });
+
+  useEffect(() => {
+    if (isMobile) {
+      setSlides(1);
+    } else if (isTablet) {
+      setSlides(2);
+    } else {
+      setSlides(3);
+    }
+  }, [isTablet, isMobile]);
 
   useEffect(() => {
     if (swiperRef.current) {
       const swiper = new Swiper(swiperRef.current, {
         modules: [Navigation],
-        slidesPerView: 3,
+        slidesPerView: slides,
         slidesPerGroup: 1,
         spaceBetween: 50,
         pagination: { clickable: true },
@@ -36,7 +50,7 @@ const Discount = () => {
 
       return () => swiper.destroy();
     }
-  }, []);
+  }, [slides]);
 
   const filteredStickers = stickers.filter((sticker) => sticker.discount > 0);
 

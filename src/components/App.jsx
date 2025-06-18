@@ -3,19 +3,16 @@ import { lazy, useEffect } from "react";
 import Layout from "./Layout";
 import Notificator from "./Notificator/Notificator";
 import RestrictedRoute from "./RestrictedRoute";
-import PrivateRoute from "./PrivateRoute";
 import ManagerRoute from "./ManagerRoute";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { refreshUser } from "../redux/auth/operations";
-import { selectIsLoggedIn, selectIsRefreshing } from "../redux/auth/selectors";
-import Loader from "./Loader/Loader";
 import CreateStickers from "./CreateStickers/CreateStickers";
 import { fetchProducts } from "../redux/products/operations";
 
 const HomePage = lazy(() => import("../pages/HomePage"));
-const CatalogPage = lazy(() => import("../pages/CatalogPage"));
+const CatalogPage = lazy(() => import("../pages/CatalogPage/CatalogPage"));
 const NotFoundPage = lazy(() => import("../pages/NotFoundPage/NotFoundPage"));
-const PersonalAccount = lazy(() => import("../pages/PersonalAccount"));
+const WishListPage = lazy(() => import("../pages/WishListPage"));
 const ProductCardPage = lazy(() =>
   import("../pages/ProductCardPage/ProductCardPage")
 );
@@ -26,28 +23,19 @@ const ManagerPage = lazy(() => import("../pages/ManagerPage"));
 
 function App() {
   const dispatch = useDispatch();
-  const isRefreshing = useSelector(selectIsRefreshing);
-  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   useEffect(() => {
-    if (isLoggedIn) {
-      dispatch(refreshUser());
-    }
+    dispatch(refreshUser());
     dispatch(fetchProducts());
-  }, [dispatch, isLoggedIn]);
+  }, [dispatch]);
 
-  return isRefreshing ? (
-    <Loader />
-  ) : (
+  return (
     <>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route path="catalog" element={<CatalogPage />} />
-          <Route
-            path="myaccount"
-            element={<PrivateRoute component={<PersonalAccount />} />}
-          />
+          <Route path="/wishlist" element={<WishListPage />} />
           <Route path="catalog/:productId" element={<ProductCardPage />} />
           <Route path="order" element={<Order />} />
           <Route

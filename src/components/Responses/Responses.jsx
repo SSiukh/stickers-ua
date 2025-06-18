@@ -5,18 +5,32 @@ import responses from "../../data/responses.json";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import Response from "./Response/Response";
 import { IconButton } from "@mui/material";
+import { useMediaQuery } from "react-responsive";
 
 const Responses = () => {
   const swiperRef = useRef(null);
   const [isFirstSlide, setIsFirstSlide] = useState(true);
   const [isLastSlide, setIsLastSlide] = useState(false);
+  const [slides, setSlides] = useState(4);
+  const isTablet = useMediaQuery({ maxWidth: 990 });
+  const isMobile = useMediaQuery({ maxWidth: 640 });
+
+  useEffect(() => {
+    if (isMobile) {
+      setSlides(1);
+    } else if (isTablet) {
+      setSlides(2);
+    } else {
+      setSlides(4);
+    }
+  }, [isTablet, isMobile]);
 
   useEffect(() => {
     if (swiperRef.current) {
       const swiper = new Swiper(swiperRef.current, {
         effect: "coverflow",
-        slidesPerView: 4,
-        slidesPerGroup: 1,
+        slidesPerView: slides,
+        slidesPerGroup: slides,
         spaceBetween: 50,
         slideToClickedSlide: true,
         coverflowEffect: {
@@ -38,12 +52,14 @@ const Responses = () => {
 
       return () => swiper.destroy();
     }
-  }, []);
+  }, [slides]);
 
   return (
     <section id="responses" className={s.responses}>
       <div className="container">
-        <h2 className={s.title}>Що говорять клієнти про наші наклейки</h2>
+        <h2 className={s.title}>
+          {isMobile ? "Відгуки" : "Що говорять клієнти про наші наклейки"}
+        </h2>
         <div className={s.container}>
           <div className={s.swiper}>
             <div className="responses-swiper" ref={swiperRef}>

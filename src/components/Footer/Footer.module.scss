@@ -14,7 +14,18 @@ $transpTextColor: #fbfbfb50;
 .footer_container {
   padding: 40px 40px 28px 40px;
   border-radius: 30px;
+  width: 100%;
 
+  .footerTabletTitle {
+    display: none;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 1.14286;
+    letter-spacing: -0.02em;
+    text-align: center;
+    color: #f2e8cf;
+    margin-bottom: 30px;
+  }
   &_top {
     display: flex;
     justify-content: space-between;
@@ -173,6 +184,50 @@ $transpTextColor: #fbfbfb50;
         background-image: linear-gradient(to right, #22c1c3, #fdbb2d);
         background-clip: text;
         color: transparent;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1030px) {
+  .footer_container {
+    .footerTabletTitle {
+      display: block;
+    }
+
+    &_top {
+      &_title {
+        display: none;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 630px) {
+  .footer_container {
+    padding: 40px 0 28px 0;
+    border-radius: 30px;
+    .footerTabletTitle {
+      display: block;
+      font-size: 18px;
+    }
+
+    &_top {
+      &_title {
+        display: none;
+      }
+
+      &_contacts {
+        align-items: start;
+        &_logo {
+          font-size: 14px;
+          padding: 3px 7px;
+        }
+      }
+      &_tel {
+        padding: 7px;
+        font-weight: 500;
+        font-size: 12px;
       }
     }
   }

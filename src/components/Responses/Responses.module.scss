@@ -42,3 +42,18 @@
   overflow: hidden;
   width: calc(100% - 180px);
 }
+
+@media screen and (max-width: 768px) {
+  .container {
+    .prevButton {
+      display: none;
+    }
+    .nextButton {
+      display: none;
+    }
+  }
+
+  .swiper {
+    width: 80%;
+  }
+}

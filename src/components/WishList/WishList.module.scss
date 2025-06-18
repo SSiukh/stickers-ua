@@ -2,14 +2,12 @@
 
 .container {
   margin-top: 110px;
-  border-top: 1px solid $beige-border;
-  width: 80%;
   height: calc(100dvh - 110px);
 
   .list {
     display: flex;
     flex-wrap: wrap;
-    padding: 20px;
+    padding: 20px 20px 20px 0;
     gap: 20px;
     overflow: auto;
     height: calc(100% - 20px);
@@ -31,29 +29,14 @@
     }
 
     .item {
-      width: calc((100% - 40px) / 3);
+      width: calc((100% - 60px) / 4);
       height: fit-content;
     }
   }
 }
 
-@media screen and (max-width: 1280px) {
+@media screen and (max-width: 1040px) {
   .container {
-    .list {
-      .item {
-        width: calc((100% - 20px) / 2);
-      }
-    }
-  }
-}
-
-@media screen and (max-width: 950px) {
-  .container {
-    margin-top: 20px;
-    border-top: none;
-    width: 100%;
-    height: calc(100dvh - 310px);
-
     .list {
       .item {
         width: calc((100% - 40px) / 3);
@@ -62,7 +45,7 @@
   }
 }
 
-@media screen and (max-width: 850px) {
+@media screen and (max-width: 786px) {
   .container {
     .list {
       .item {
@@ -72,18 +55,13 @@
   }
 }
 
-@media screen and (max-width: 580px) {
+@media screen and (max-width: 512px) {
   .container {
     .list {
+      padding: 20px 0;
       .item {
         width: 100%;
       }
     }
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .container {
-    height: calc(100dvh - 335px);
   }
 }

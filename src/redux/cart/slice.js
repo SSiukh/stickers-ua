@@ -37,13 +37,13 @@ const slice = createSlice({
       calculateTotalPrice(state);
     },
     removeCart: (state, { payload }) => {
-      state.items = state.items.filter((item) => item.id !== payload);
+      state.items = state.items.filter((item) => item._id !== payload);
       calculateQty(state);
       calculateTotalPrice(state);
     },
     addQty: (state, { payload }) => {
       state.items.forEach((item) => {
-        if (item.id === payload) {
+        if (item._id === payload) {
           item.qty++;
         }
 
@@ -54,7 +54,7 @@ const slice = createSlice({
     },
     decreaseQty: (state, { payload }) => {
       state.items.forEach((item) => {
-        if (item.id === payload && item.qty > 1) {
+        if (item._id === payload && item.qty > 1) {
           item.qty--;
         }
 

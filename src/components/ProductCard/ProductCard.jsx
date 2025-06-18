@@ -2,20 +2,20 @@ import clsx from "clsx";
 import s from "./ProductCard.module.scss";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import { IconButton } from "@mui/material";
+import { IconButton, Tooltip } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { addCart } from "../../redux/cart/slice";
 import { selectCartItems } from "../../redux/cart/selectors";
 import toast from "react-hot-toast";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import { useNavigate } from "react-router-dom";
-import { selectIsLoggedIn } from "../../redux/auth/selectors";
+import { addWish, removeWish } from "../../redux/wish/slice";
+import { selectWishItems } from "../../redux/wish/selectors";
+import DeleteIcon from "@mui/icons-material/Delete";
 
-const ProductCard = ({ stickers }) => {
+const ProductCard = ({ stickers, isWishCard }) => {
   const { _id, name, photo, price, discount } = stickers;
-  const isLoggedIn = useSelector(selectIsLoggedIn);
   const cartProducts = useSelector(selectCartItems);
-  const navigate = useNavigate();
+  const wishProducts = useSelector(selectWishItems);
   const dispatch = useDispatch();
   const addToCart = (object) => {
     const isExistIndex = cartProducts.findIndex(
@@ -30,15 +30,23 @@ const ProductCard = ({ stickers }) => {
     toast.error("Товар вже присутній в кошику");
   };
 
-  const isInCart = cartProducts.find((item) => item.id === _id);
-  const handleWish = () => {
-    if (!isLoggedIn) {
-      navigate("/login");
-      toast.error("Потрібно увійти в кабінет");
+  const isInCart = cartProducts.find((item) => item._id === _id);
+  const isInWish = wishProducts.find((item) => item._id === _id);
+  const handleWish = (product) => {
+    const isExistIndex = wishProducts.findIndex(
+      (sticker) => sticker.id === _id
+    );
+
+    if (isExistIndex === -1) {
+      dispatch(addWish(product));
       return;
     }
 
-    console.log("Додавання в вподобан");
+    toast.error("Товар вже присутній у вподобаних");
+  };
+
+  const handleWishDelete = (id) => {
+    dispatch(removeWish(id));
   };
 
   return (
@@ -49,16 +57,30 @@ const ProductCard = ({ stickers }) => {
       <div className={s.mainBlock}>
         <div className={s.titleBlock}>
           <p className={s.title}>{name}</p>
-          <IconButton
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              handleWish();
-            }}
-            color="secondary"
-          >
-            <FavoriteIcon />
-          </IconButton>
+          {isWishCard ? (
+            <Tooltip title="Видалити з обраного">
+              <IconButton
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  handleWishDelete(_id);
+                }}
+              >
+                <DeleteIcon color="primary" />
+              </IconButton>
+            </Tooltip>
+          ) : (
+            <IconButton
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                handleWish({ _id, name, photo, price, discount });
+              }}
+              color="secondary"
+            >
+              <FavoriteIcon color={isInWish && "success"} />
+            </IconButton>
+          )}
         </div>
         <div className={s.priceBlock}>
           {discount !== 0 && (
