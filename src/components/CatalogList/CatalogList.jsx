@@ -1,6 +1,6 @@
 import s from "./CatalogList.module.scss";
 import ProductCard from "../ProductCard/ProductCard";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   selectCategory,
   selectColor,
@@ -9,10 +9,12 @@ import {
   selectItems,
   selectKeyword,
 } from "../../redux/products/selectors";
-import { Link } from "react-router-dom";
-import { stickerTypes } from "../../utils/utils";
+import { Link, useLocation } from "react-router-dom";
 import Loader from "../Loader/Loader";
 import toast from "react-hot-toast";
+import { useEffect } from "react";
+import { fetchProducts } from "../../redux/products/operations";
+import { setCategory, setColor, setKeyword } from "../../redux/products/slice";
 
 const CatalogList = () => {
   const category = useSelector(selectCategory);
@@ -21,32 +23,42 @@ const CatalogList = () => {
   const color = useSelector(selectColor);
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
+  const dispatch = useDispatch();
+  const location = useLocation();
 
-  if (!stickers?.length) {
+  useEffect(() => {
+    const query = new URLSearchParams(location.search);
+
+    dispatch(setCategory(query.get("type") || null));
+    dispatch(setColor(query.get("color") || null));
+    dispatch(setKeyword(query.get("search") || null));
+  }, [location.search, dispatch]);
+
+  useEffect(() => {
+    dispatch(
+      fetchProducts({
+        type: category,
+        color,
+        search: keyword,
+      })
+    );
+  }, [category, color, keyword, dispatch]);
+
+  if (isLoading) {
     return <Loader />;
   }
+
   if (error) {
     toast.error("Помилка завантаження");
+    return null;
   }
-
-  const filteredStickers =
-    category === "Всі категорії"
-      ? stickers.filter((item) => item.name.includes(keyword))
-      : stickers.filter(
-          (item) =>
-            stickerTypes[item.type] === category && item.name.includes(keyword)
-        );
-
-  const colorFiltered = !color
-    ? filteredStickers
-    : filteredStickers.filter((sticker) => sticker.color === color);
 
   return isLoading ? (
     <Loader />
   ) : (
     <div className={s.container}>
       <ul className={s.list}>
-        {colorFiltered.map((sticker) => (
+        {stickers.map((sticker) => (
           <li className={s.item} key={sticker._id}>
             <Link to={`/catalog/${sticker._id}`}>
               <ProductCard stickers={sticker} />

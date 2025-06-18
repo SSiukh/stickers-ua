@@ -12,12 +12,14 @@ import { selectCartItems } from "../../redux/cart/selectors";
 import toast from "react-hot-toast";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { selectItems } from "../../redux/products/selectors";
+import { useMediaQuery } from "react-responsive";
 
 const AboutUs = () => {
   const [activeIndex, setActiveIndex] = useState(1);
   const dispatch = useDispatch();
   const cartProducts = useSelector(selectCartItems);
   const stickers = useSelector(selectItems);
+  const isMobile = useMediaQuery({ maxWidth: 640 });
 
   useEffect(() => {
     if (!stickers.length) return;
@@ -25,7 +27,7 @@ const AboutUs = () => {
     const swiper = new Swiper(".about-swiper", {
       effect: "coverflow",
       centeredSlides: true,
-      slidesPerView: 2,
+      slidesPerView: !isMobile ? 2 : 1,
       slidesPerGroup: 1,
       initialSlide: 1,
       slideToClickedSlide: true,
@@ -42,7 +44,7 @@ const AboutUs = () => {
       swiper.off("slideChange");
       swiper.destroy();
     };
-  }, [stickers]);
+  }, [stickers, isMobile]);
 
   if (!stickers.length) return null;
 

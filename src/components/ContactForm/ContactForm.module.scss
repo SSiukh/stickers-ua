@@ -72,3 +72,23 @@
     }
   }
 }
+
+@media screen and (max-width: 1120px) {
+  .container {
+    .form {
+      width: 100%;
+    }
+  }
+}
+
+@media screen and (max-width: 1120px) {
+  .container {
+    padding: 20px;
+
+    .form {
+      .title {
+        font-size: 18px;
+      }
+    }
+  }
+}

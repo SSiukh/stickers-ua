@@ -55,3 +55,51 @@
     }
   }
 }
+
+@media screen and (max-width: 900px) {
+  .hero {
+    .heroContainer {
+      .mainContent {
+        .heroTitle {
+          font-size: 32px;
+        }
+        .heroText {
+          font-size: 18px;
+        }
+        .heroButton {
+          border-radius: 20px;
+          font-size: 18px;
+          padding: 15px 25px;
+        }
+      }
+
+      .heroImg {
+        width: 300px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 690px) {
+  .hero {
+    .heroContainer {
+      .mainContent {
+        .heroTitle {
+          font-size: 28px;
+        }
+        .heroText {
+          font-size: 18px;
+        }
+        .heroButton {
+          border-radius: 20px;
+          font-size: 16px;
+          padding: 10px 17px;
+        }
+      }
+
+      .heroImg {
+        display: none;
+      }
+    }
+  }
+}

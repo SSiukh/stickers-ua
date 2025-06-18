@@ -1,61 +1,54 @@
 import { Autocomplete, Button, TextField } from "@mui/material";
-import s from "./LocationForm.module.scss";
+import s from "./WarehouseForm.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  selectKeyword,
-  selectSettlements,
+  selectWarehouseKeyword,
+  selectWarehouses,
 } from "../../redux/locations/selectors";
-import { setLocationsKeyword } from "../../redux/locations/slice";
-import { getLocationsByName } from "../../redux/locations/operations";
-import { useEffect, useState } from "react";
+import { setWarehousesKeyword } from "../../redux/locations/slice";
+import { getWarehousesByIdName } from "../../redux/locations/operations";
+import { useState } from "react";
 import clsx from "clsx";
 import { MdLocationOn } from "react-icons/md";
-import { setLocation } from "../../redux/order/slice";
-import { selectLocation } from "../../redux/order/selectors";
+import { setWarehouse } from "../../redux/order/slice";
+import { selectWarehouse } from "../../redux/order/selectors";
 
-const LocationForm = () => {
+const WarehouseForm = () => {
   const dispatch = useDispatch();
-  const keyword = useSelector(selectKeyword);
-  const settlements = useSelector(selectSettlements);
+  const keyword = useSelector(selectWarehouseKeyword);
+  const warehouses = useSelector(selectWarehouses);
   const [inputValue, setInputValue] = useState(keyword);
   const [formIsOpen, setFormIsOpen] = useState(true);
-  const location = useSelector(selectLocation);
-
-  useEffect(() => {
-    const defaultKeyword = "Київ";
-    dispatch(setLocationsKeyword(defaultKeyword));
-    dispatch(getLocationsByName(defaultKeyword));
-    setInputValue(defaultKeyword);
-  }, [dispatch]);
+  const warehouse = useSelector(selectWarehouse);
 
   const handleInputChange = (event, newInputValue) => {
     setInputValue(newInputValue);
-    dispatch(setLocationsKeyword(newInputValue));
+    dispatch(setWarehousesKeyword(newInputValue));
 
-    if (newInputValue.length > 2) {
-      dispatch(getLocationsByName(newInputValue));
-    }
+    dispatch(
+      getWarehousesByIdName({ cityName: "Луцьк", warehouseId: +newInputValue })
+    );
   };
 
   const handleOptionSelect = (event, newValue) => {
     if (newValue) {
-      dispatch(setLocationsKeyword(newValue.Present));
+      dispatch(setWarehousesKeyword(newValue.Present));
     }
   };
 
   const handleSubmit = () => {
     setFormIsOpen(false);
-    dispatch(setLocation(inputValue));
+    dispatch(setWarehouse(inputValue));
   };
 
   return (
     <div className={clsx(s.container, !formIsOpen && s.infoContainer)}>
-      {formIsOpen && <h2 className={s.title}>Виберіть локацію</h2>}
+      {formIsOpen && <h2 className={s.title}>Виберіть відділення/поштомат</h2>}
       {formIsOpen ? (
         <div className={s.form}>
           <Autocomplete
             className={s.field}
-            options={settlements?.Addresses || []}
+            options={warehouses?.Addresses || []}
             getOptionLabel={(option) => option.Present || ""}
             inputValue={inputValue}
             onInputChange={handleInputChange}
@@ -76,7 +69,7 @@ const LocationForm = () => {
         <div className={s.infoBlock}>
           <div className={s.infoMainBlock}>
             <MdLocationOn size={20} className={s.icon} />
-            <p className={s.location}>{location}</p>
+            <p className={s.location}>{warehouse}</p>
           </div>
           <Button onClick={() => setFormIsOpen(true)}>Змінити</Button>
         </div>
@@ -85,4 +78,4 @@ const LocationForm = () => {
   );
 };
 
-export default LocationForm;
+export default WarehouseForm;

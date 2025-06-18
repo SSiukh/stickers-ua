@@ -4,6 +4,7 @@
   margin-top: 110px;
   border-top: 1px solid $beige-border;
   width: 20%;
+  min-width: 260px;
   border-left: 1px solid $beige-border;
   height: calc(100dvh - 130px);
   padding: 20px;
@@ -46,6 +47,37 @@
       .borderedColorItem {
         border: 1px solid $beige;
         border-radius: 50%;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 950px) {
+  .container {
+    height: fit-content;
+    width: 100%;
+    align-items: center;
+
+    .search {
+      max-width: 500px;
+    }
+    .colorPicker {
+      max-width: 500px;
+      height: fit-content;
+      flex-direction: row;
+      .colorText {
+        display: none;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .container {
+    .colorPicker {
+      flex-direction: column;
+      .colorsList {
+        gap: 5px;
       }
     }
   }

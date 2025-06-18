@@ -18,7 +18,7 @@
       flex-direction: column;
       align-items: center;
       gap: 20px;
-      width: 40%;
+      width: 524px;
       padding: 70px 50px;
       background-color: #2031182d;
       backdrop-filter: blur(10px);
@@ -48,6 +48,38 @@
 
       &:hover {
         background-color: #20311842;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .section {
+    .container {
+      .form {
+        width: 70%;
+        padding: 70px 30px;
+        .formText {
+          font-size: 18px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .section {
+    .container {
+      .form {
+        width: 100%;
+        padding: 50px 20px;
+        .formText {
+          font-size: 12px;
+          margin-bottom: 10px;
+        }
+        .unregistered {
+          font-size: 12px;
+        }
       }
     }
   }

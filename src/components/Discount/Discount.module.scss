@@ -24,3 +24,17 @@
   overflow: hidden;
   width: 80%;
 }
+
+@media screen and (max-width: 768px) {
+  .discount {
+    padding: 40px 0;
+  }
+  .main {
+    .prevButton {
+      display: none;
+    }
+    .nextButton {
+      display: none;
+    }
+  }
+}

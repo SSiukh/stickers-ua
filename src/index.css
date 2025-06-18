@@ -57,3 +57,21 @@ img {
   padding: 0 65px;
   margin: 0 auto;
 }
+
+.no-scroll {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 0 30px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .container {
+    padding: 0 20px;
+  }
+}

@@ -12,6 +12,7 @@ const handleRejected = (state, { payload }) => {
 
 const initialState = {
   items: [],
+  currentItem: null,
   loading: false,
   error: null,
   filter: {
@@ -48,14 +49,14 @@ const slice = createSlice({
       .addCase(fetchProductById.fulfilled, (state, { payload }) => {
         state.loading = false;
         state.error = null;
-        state.items.push(payload.data);
+        state.currentItem = payload.data;
       })
       .addCase(fetchProductById.pending, handlePending)
       .addCase(addProduct.pending, handlePending)
       .addCase(addProduct.fulfilled, (state, { payload }) => {
         state.loading = false;
         state.error = null;
-        state.items.push(payload);
+        state.items.push(payload.data);
       })
       .addCase(addProduct.rejected, handleRejected)
       .addCase(logout.fulfilled, () => initialState);

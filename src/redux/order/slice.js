@@ -11,6 +11,7 @@ const initialState = {
   delivery: {
     type: "",
     location: null,
+    warehouse: null,
   },
   comment: "",
 };
@@ -31,6 +32,9 @@ const slice = createSlice({
     setLocation: (state, { payload }) => {
       state.delivery.location = payload;
     },
+    setWarehouse: (state, { payload }) => {
+      state.delivery.warehouse = payload;
+    },
     setComment: (state, { payload }) => {
       state.comment = payload;
     },
@@ -43,6 +47,7 @@ export const {
   setDeliveryType,
   setLocation,
   setComment,
+  setWarehouse,
 } = slice.actions;
 
 export const orderReducer = slice.reducer;

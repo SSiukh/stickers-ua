@@ -11,6 +11,7 @@ import OrderProductCard from "../../components/OrderProductCars/OrderProductCard
 import { getNounForm } from "../../utils/getNounForm";
 import ContactForm from "../../components/ContactForm/ContactForm";
 import LocationForm from "../../components/LocationForm/LocationForm";
+import WarehouseForm from "../../components/Warehouse/WarehouseForm";
 
 const Order = () => {
   const products = useSelector(selectCartItems);
@@ -26,11 +27,9 @@ const Order = () => {
             <div className={s.formBlock}>
               <ContactForm />
               <LocationForm />
-              {/* {location} */}
-              <h2 className={s.title}>Доставка</h2>
-              {/* form delivery */}
+              <WarehouseForm />
               <h2 className={s.title}>Оплата</h2>
-              {/* Payment form */}
+              {/* form pay */}
               <h2 className={s.title}>Отримувач</h2>
               {/* форма яку можна змінити натиском, ПІБ, телефон */}
               <h2 className={s.title}>Додати коментар до замовлення</h2>
@@ -49,8 +48,8 @@ const Order = () => {
               <p className={s.value}>{totalPrice} грн.</p>
             </div>
             <ul className={s.productsList}>
-              {products.map(({ id, name, qty, photo, price, discount }) => (
-                <li key={id}>
+              {products.map(({ _id, name, qty, photo, price, discount }) => (
+                <li key={_id}>
                   <OrderProductCard
                     name={name}
                     qty={qty}
