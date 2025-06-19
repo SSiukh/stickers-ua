@@ -3,7 +3,7 @@
 .container {
   margin-top: 110px;
   height: calc(100dvh - 110px);
-
+  width: 100%;
   .list {
     display: flex;
     flex-wrap: wrap;
@@ -32,6 +32,15 @@
       width: calc((100% - 60px) / 4);
       height: fit-content;
     }
+  }
+  .noneText {
+    width: 100%;
+    font-weight: 600;
+    font-size: 24px;
+    color: #f2e8cf;
+    margin-bottom: 60px;
+    text-align: center;
+    margin-top: 100px;
   }
 }
 

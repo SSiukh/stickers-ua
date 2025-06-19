@@ -11,42 +11,78 @@ import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { addWish, removeWish } from "../../redux/wish/slice";
 import { selectWishItems } from "../../redux/wish/selectors";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { selectIsLoggedIn } from "../../redux/auth/selectors";
+import { selectAuthCartItems } from "../../redux/authCart/selectors";
+import { addItemToCart } from "../../redux/authCart/operations";
+import { selectAuthWishItems } from "../../redux/authWish/selectors";
+import { addItemToWish, removeWishItem } from "../../redux/authWish/operations";
 
 const ProductCard = ({ stickers, isWishCard }) => {
   const { _id, name, photo, price, discount } = stickers;
   const cartProducts = useSelector(selectCartItems);
-  const wishProducts = useSelector(selectWishItems);
+  const authCartProducts = useSelector(selectAuthCartItems);
+  const localWishProducts = useSelector(selectWishItems);
+  const authWishProducts = useSelector(selectAuthWishItems);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
   const dispatch = useDispatch();
-  const addToCart = (object) => {
-    const isExistIndex = cartProducts.findIndex(
-      (sticker) => sticker.id === _id
-    );
 
-    if (isExistIndex === -1) {
-      dispatch(addCart({ ...object, qty: 1 }));
-      return;
+  const wishProducts = isLoggedIn ? authWishProducts : localWishProducts;
+  const addToCart = (object) => {
+    if (isLoggedIn) {
+      const isExistIndex = authCartProducts.findIndex(
+        (sticker) => sticker.productId._id === _id
+      );
+
+      if (isExistIndex === -1) {
+        dispatch(addItemToCart({ productId: object._id, quantity: 1 }));
+        return;
+      }
+    } else {
+      const isExistIndex = cartProducts.findIndex(
+        (sticker) => sticker._id === _id
+      );
+
+      if (isExistIndex === -1) {
+        dispatch(addCart({ ...object, qty: 1 }));
+        return;
+      }
     }
 
     toast.error("Товар вже присутній в кошику");
   };
 
-  const isInCart = cartProducts.find((item) => item._id === _id);
-  const isInWish = wishProducts.find((item) => item._id === _id);
+  const isInCart = isLoggedIn
+    ? authCartProducts.find((item) => item.productId._id === _id)
+    : cartProducts.find((item) => item._id === _id);
+
+  const isInWish = isLoggedIn
+    ? authWishProducts.find((item) => item.productId._id === _id)
+    : localWishProducts.find((item) => item._id === _id);
+
   const handleWish = (product) => {
     const isExistIndex = wishProducts.findIndex(
       (sticker) => sticker.id === _id
     );
 
     if (isExistIndex === -1) {
-      dispatch(addWish(product));
-      return;
+      if (isLoggedIn) {
+        dispatch(addItemToWish(_id));
+        return;
+      } else {
+        dispatch(addWish(product));
+        return;
+      }
     }
 
     toast.error("Товар вже присутній у вподобаних");
   };
 
   const handleWishDelete = (id) => {
-    dispatch(removeWish(id));
+    if (isLoggedIn) {
+      dispatch(removeWishItem(id));
+    } else {
+      dispatch(removeWish(id));
+    }
   };
 
   return (
