@@ -8,12 +8,25 @@ import {
   selectTotalPrice,
 } from "../../redux/cart/selectors";
 import { setIsOpen } from "../../redux/cart/slice";
+import LogoutIcon from "@mui/icons-material/Logout";
+import { logout } from "../../redux/auth/operations";
+import { selectIsLoggedIn } from "../../redux/auth/selectors";
+import {
+  selectAuthCartQty,
+  selectAuthTotalPrice,
+} from "../../redux/authCart/selectors";
 
 const CartButton = () => {
-  const totalPrice = useSelector(selectTotalPrice);
-  const qty = useSelector(selectCartQty);
+  const localTotalPrice = useSelector(selectTotalPrice);
+  const localQty = useSelector(selectCartQty);
   const dispatch = useDispatch();
   const isOpen = useSelector(selectCartIsOpen);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const authTotalPrice = useSelector(selectAuthTotalPrice);
+  const authQty = useSelector(selectAuthCartQty);
+
+  const qty = isLoggedIn ? authQty : localQty;
+  const totalPrice = isLoggedIn ? authTotalPrice : localTotalPrice;
 
   return (
     <div className={s.container}>
@@ -27,6 +40,11 @@ const CartButton = () => {
           <ShoppingCartIcon />
         </Badge>
       </IconButton>
+      {isLoggedIn && (
+        <IconButton onClick={() => dispatch(logout())}>
+          <LogoutIcon />
+        </IconButton>
+      )}
     </div>
   );
 };

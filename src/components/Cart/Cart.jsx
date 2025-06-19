@@ -5,16 +5,31 @@ import CartProductCard from "../CartProductCard/CartProductCard";
 import { Button, IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { setIsOpen } from "../../redux/cart/slice";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import { getCartItems } from "../../redux/authCart/operations";
+import {
+  selectAuthCartItems,
+  selectAuthTotalPrice,
+} from "../../redux/authCart/selectors";
+import { selectIsLoggedIn } from "../../redux/auth/selectors";
 
 const Cart = () => {
   const overlay = useRef();
-  const totalPrice = useSelector(selectTotalPrice);
   const elements = useSelector(selectCartItems);
+  const authProducts = useSelector(selectAuthCartItems);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const localTotalPrice = useSelector(selectTotalPrice);
+  const authTotalPrice = useSelector(selectAuthTotalPrice);
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      dispatch(getCartItems());
+    }
+  }, [dispatch, isLoggedIn]);
 
   const handleOverlayClose = (e) => {
     if (e.target !== overlay.current) {
@@ -33,6 +48,9 @@ const Cart = () => {
     navigate("/order");
   };
 
+  const products = authProducts.length ? authProducts : elements;
+  const totalPrice = isLoggedIn ? authTotalPrice : localTotalPrice;
+
   return (
     <div ref={overlay} className={s.overlay} onClick={handleOverlayClose}>
       <div className={s.container}>
@@ -47,7 +65,7 @@ const Cart = () => {
             </IconButton>
           </div>
           <ul className={s.list}>
-            {elements.map((sticker) => (
+            {products.map((sticker) => (
               <li key={sticker._id}>
                 <CartProductCard data={sticker} />
               </li>

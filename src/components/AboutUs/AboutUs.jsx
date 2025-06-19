@@ -13,13 +13,18 @@ import toast from "react-hot-toast";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { selectItems } from "../../redux/products/selectors";
 import { useMediaQuery } from "react-responsive";
+import { selectAuthCartItems } from "../../redux/authCart/selectors";
+import { selectIsLoggedIn } from "../../redux/auth/selectors";
+import { addItemToCart } from "../../redux/authCart/operations";
 
 const AboutUs = () => {
   const [activeIndex, setActiveIndex] = useState(1);
   const dispatch = useDispatch();
-  const cartProducts = useSelector(selectCartItems);
+  const localCartProducts = useSelector(selectCartItems);
+  const authCartProducts = useSelector(selectAuthCartItems);
   const stickers = useSelector(selectItems);
   const isMobile = useMediaQuery({ maxWidth: 640 });
+  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   useEffect(() => {
     if (!stickers.length) return;
@@ -48,22 +53,41 @@ const AboutUs = () => {
 
   if (!stickers.length) return null;
 
+  const cartProducts = isLoggedIn ? authCartProducts : localCartProducts;
+
   const filteredStickers = stickers.filter((sticker) => sticker.onAbout);
 
-  const addToCart = (id, object) => {
-    const isExistIndex = cartProducts.findIndex((sticker) => sticker.id === id);
-
-    if (isExistIndex === -1) {
-      dispatch(addCart({ ...object, qty: 1 }));
-      return;
+  const addToCart = (object) => {
+    const isExistIndex = cartProducts.findIndex(
+      (sticker) => sticker._id === filteredStickers[activeIndex]._id
+    );
+    if (isLoggedIn) {
+      if (isExistIndex === -1) {
+        dispatch(addItemToCart({ productId: object.id, quantity: 1 }));
+        return;
+      }
+    } else {
+      if (isExistIndex === -1) {
+        dispatch(
+          addCart({
+            ...object,
+            qty: 1,
+          })
+        );
+        return;
+      }
     }
 
     toast.error("Товар вже присутній в кошику");
   };
 
-  const isInCart = cartProducts.find(
-    (item) => item.id === filteredStickers[activeIndex].id
-  );
+  const isInCart = isLoggedIn
+    ? authCartProducts.find(
+        (item) => item.productId._id === filteredStickers[activeIndex]._id
+      )
+    : cartProducts.find(
+        (item) => item._id === filteredStickers[activeIndex]._id
+      );
 
   return (
     stickers.length && (
@@ -88,8 +112,8 @@ const AboutUs = () => {
                 </Link>
                 <IconButton
                   onClick={() =>
-                    addToCart(filteredStickers[activeIndex].id, {
-                      id: filteredStickers[activeIndex].id,
+                    addToCart({
+                      id: filteredStickers[activeIndex]._id,
                       name: filteredStickers[activeIndex].name,
                       photo: filteredStickers[activeIndex].photo,
                       price: filteredStickers[activeIndex].price,

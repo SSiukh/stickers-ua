@@ -22,6 +22,13 @@ import toast from "react-hot-toast";
 import { useEffect } from "react";
 import { fetchProductById } from "../../redux/products/operations";
 import Loader from "../../components/Loader/Loader";
+import { selectIsLoggedIn } from "../../redux/auth/selectors";
+import { selectAuthCartItems } from "../../redux/authCart/selectors";
+import { addItemToCart } from "../../redux/authCart/operations";
+import { selectWishItems } from "../../redux/wish/selectors";
+import { selectAuthWishItems } from "../../redux/authWish/selectors";
+import { addItemToWish } from "../../redux/authWish/operations";
+import { addWish } from "../../redux/wish/slice";
 
 const ProductCardPage = () => {
   const { productId } = useParams();
@@ -32,6 +39,10 @@ const ProductCardPage = () => {
   const cartProducts = useSelector(selectCartItems);
   const product = useSelector(selectCurrentItem);
   const isMobile = useMediaQuery({ maxWidth: 380 });
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const authCartProducts = useSelector(selectAuthCartItems);
+  const localWishProducts = useSelector(selectWishItems);
+  const authWishProducts = useSelector(selectAuthWishItems);
 
   useEffect(() => {
     dispatch(fetchProductById(productId));
@@ -43,23 +54,60 @@ const ProductCardPage = () => {
     toast.error("Помилка завантаження");
   }
 
+  const wishProducts = isLoggedIn ? authWishProducts : localWishProducts;
+
   const { _id, name, price, discount, type, color, photo, info } = product;
 
-  const isInCart = cartProducts.find((item) => item._id === _id);
+  const isInCart = isLoggedIn
+    ? authCartProducts.find((item) => item.productId._id === _id)
+    : cartProducts.find((item) => item._id === _id);
+
+  const isInWish = isLoggedIn
+    ? authWishProducts.find((item) => item.productId._id === _id)
+    : localWishProducts.find((item) => item._id === _id);
 
   const otherImages = stickers.filter((item) => item.name === name);
 
   const addToCart = (object) => {
-    const isExistIndex = cartProducts.findIndex(
-      (sticker) => sticker._id === _id
-    );
+    if (isLoggedIn) {
+      const isExistIndex = authCartProducts.findIndex(
+        (sticker) => sticker.productId._id === _id
+      );
 
-    if (isExistIndex === -1) {
-      dispatch(addCart({ ...object, qty: 1 }));
-      return;
+      if (isExistIndex === -1) {
+        dispatch(addItemToCart({ productId: object._id, quantity: 1 }));
+        return;
+      }
+    } else {
+      const isExistIndex = cartProducts.findIndex(
+        (sticker) => sticker._id === _id
+      );
+
+      if (isExistIndex === -1) {
+        dispatch(addCart({ ...object, qty: 1 }));
+        return;
+      }
     }
 
     toast.error("Товар вже присутній в кошику");
+  };
+
+  const handleWish = (product) => {
+    const isExistIndex = wishProducts.findIndex(
+      (sticker) => sticker.id === _id
+    );
+
+    if (isExistIndex === -1) {
+      if (isLoggedIn) {
+        dispatch(addItemToWish(_id));
+        return;
+      } else {
+        dispatch(addWish(product));
+        return;
+      }
+    }
+
+    toast.error("Товар вже присутній у вподобаних");
   };
 
   return isLoading ? (
@@ -90,8 +138,16 @@ const ProductCardPage = () => {
           <div className={s.rightBlock}>
             <div className={s.nameBlock}>
               <p className={s.name}>{name}</p>
-              <IconButton size="large" color="primary">
-                <FavoriteIcon fontSize="26px" />
+              <IconButton
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  handleWish({ _id, name, photo, price, discount });
+                }}
+                size="large"
+                color="primary"
+              >
+                <FavoriteIcon color={isInWish && "success"} fontSize="26px" />
               </IconButton>
             </div>
             <div className={s.info}>
