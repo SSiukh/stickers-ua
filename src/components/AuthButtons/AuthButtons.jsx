@@ -14,16 +14,14 @@ const AuthButtons = () => {
     <div className={s.block}>
       {pathname !== "/login" && (
         <Button size={isMobile ? "small" : "large"} variant="contained">
-          {isMobile ? <LoginIcon /> : <Link to="/login">Увійти</Link>}
+          <Link to="/login">{isMobile ? <LoginIcon /> : "Увійти"}</Link>
         </Button>
       )}
       {pathname !== "/register" && (
         <Button size={isMobile ? "small" : "large"} variant="contained">
-          {isMobile ? (
-            <HowToRegIcon />
-          ) : (
-            <Link to="/register">Зареєструватись</Link>
-          )}
+          <Link to="/register">
+            {isMobile ? <HowToRegIcon /> : "Зареєструватись"}
+          </Link>
         </Button>
       )}
     </div>
