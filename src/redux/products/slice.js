@@ -17,8 +17,7 @@ const initialState = {
   error: null,
   filter: {
     keyword: "",
-    category: "Всі категорії",
-    color: "",
+    category: "all",
   },
 };
 
@@ -31,9 +30,6 @@ const slice = createSlice({
     },
     setKeyword: (state, { payload }) => {
       state.filter.keyword = payload;
-    },
-    setColor: (state, { payload }) => {
-      state.filter.color = payload;
     },
   },
   extraReducers: (builder) => {
@@ -63,6 +59,6 @@ const slice = createSlice({
   },
 });
 
-export const { setCategory, setKeyword, setColor } = slice.actions;
+export const { setCategory, setKeyword } = slice.actions;
 
 export const productsReducer = slice.reducer;
