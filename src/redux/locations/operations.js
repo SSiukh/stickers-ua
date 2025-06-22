@@ -5,7 +5,7 @@ export const getLocationsByName = createAsyncThunk(
   "locations/getLocationsByName",
   async (cityName, thunkAPI) => {
     try {
-      const { data } = await api.get("/locations", {
+      const { data } = await api.get("/np/locations", {
         params: {
           cityName,
           limit: 20,
@@ -24,7 +24,7 @@ export const getWarehousesByIdName = createAsyncThunk(
   "locations/getWarehousesByIdName",
   async ({ cityName, warehouseId }, thunkAPI) => {
     try {
-      const { data } = await api.get("/warehouses", {
+      const { data } = await api.get("/np/warehouses", {
         params: {
           cityName,
           warehouseId,

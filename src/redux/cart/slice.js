@@ -67,10 +67,17 @@ const slice = createSlice({
       state.isOpen = payload;
       setScroll(!payload);
     },
+    clearLocalCart: () => initialState,
   },
 });
 
-export const { setIsOpen, addCart, removeCart, addQty, decreaseQty } =
-  slice.actions;
+export const {
+  setIsOpen,
+  addCart,
+  removeCart,
+  addQty,
+  decreaseQty,
+  clearLocalCart,
+} = slice.actions;
 
 export const cartReducer = slice.reducer;

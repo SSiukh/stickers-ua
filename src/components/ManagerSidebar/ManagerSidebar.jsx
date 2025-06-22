@@ -3,6 +3,7 @@ import s from "./ManagerSidebar.module.scss";
 import PersonIcon from "@mui/icons-material/Person";
 import { useSelector } from "react-redux";
 import { MdAddChart } from "react-icons/md";
+import ApprovalIcon from "@mui/icons-material/Approval";
 import { selectEmail, selectName } from "../../redux/auth/selectors";
 import { setNavClass } from "../../utils/utils";
 
@@ -27,6 +28,15 @@ const ManagerSidebar = () => {
           >
             <MdAddChart className={s.itemIcon} size={25} />
             Додати стікери
+          </NavLink>
+        </li>
+        <li className={s.item}>
+          <NavLink
+            className={(isActive) => setNavClass(isActive, s)}
+            to="orders-processing"
+          >
+            <ApprovalIcon className={s.itemIcon} size={25} />
+            Обробка замовлень
           </NavLink>
         </li>
       </ul>

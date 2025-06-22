@@ -19,6 +19,7 @@ const LocationForm = () => {
   const settlements = useSelector(selectSettlements);
   const [inputValue, setInputValue] = useState(keyword);
   const [formIsOpen, setFormIsOpen] = useState(true);
+  const [settlement, setSettlement] = useState(null);
   const location = useSelector(selectLocation);
 
   useEffect(() => {
@@ -40,12 +41,13 @@ const LocationForm = () => {
   const handleOptionSelect = (event, newValue) => {
     if (newValue) {
       dispatch(setLocationsKeyword(newValue.Present));
+      setSettlement(newValue);
     }
   };
 
   const handleSubmit = () => {
     setFormIsOpen(false);
-    dispatch(setLocation(inputValue));
+    dispatch(setLocation(settlement));
   };
 
   return (
@@ -76,7 +78,7 @@ const LocationForm = () => {
         <div className={s.infoBlock}>
           <div className={s.infoMainBlock}>
             <MdLocationOn size={20} className={s.icon} />
-            <p className={s.location}>{location}</p>
+            <p className={s.location}>{location.Present}</p>
           </div>
           <Button onClick={() => setFormIsOpen(true)}>Змінити</Button>
         </div>
