@@ -28,22 +28,6 @@ const OrderItem = ({
     completed: "Виконані",
   };
 
-  //   const handleDelete = async () => {
-  //     try {
-  //       await api.delete(`/orders/${id}`);
-  //     } catch (e) {
-  //       toast.error("Помилка видалення");
-  //     }
-  //   };
-
-  //   const handleComplete = async () => {
-  //     try {
-  //       await api.patch(`/orders/${id}`);
-  //     } catch (e) {
-  //       toast.error("Помилка зміни статусу");
-  //     }
-  //   };
-
   return (
     <div className={s.container}>
       <div className={s.headBlock}>

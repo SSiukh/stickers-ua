@@ -4,6 +4,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import { useSelector } from "react-redux";
 import { MdAddChart } from "react-icons/md";
 import ApprovalIcon from "@mui/icons-material/Approval";
+import StickyNote2Icon from "@mui/icons-material/StickyNote2";
 import { selectEmail, selectName } from "../../redux/auth/selectors";
 import { setNavClass } from "../../utils/utils";
 
@@ -37,6 +38,15 @@ const ManagerSidebar = () => {
           >
             <ApprovalIcon className={s.itemIcon} size={25} />
             Обробка замовлень
+          </NavLink>
+        </li>
+        <li className={s.item}>
+          <NavLink
+            className={(isActive) => setNavClass(isActive, s)}
+            to="stickers-processing"
+          >
+            <StickyNote2Icon className={s.itemIcon} size={25} />
+            Обробка стікерів
           </NavLink>
         </li>
       </ul>

@@ -1,0 +1,55 @@
+.container {
+  width: 100%;
+  border: 1px solid #f2e8cf;
+  border-radius: 30px;
+  background-color: #38572a;
+  padding: 20px;
+  display: flex;
+  gap: 30px;
+
+  .photo {
+    border: 1px solid #f2e8cf;
+    border-radius: 21px;
+    width: 130px;
+    height: 130px;
+  }
+
+  .mainBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex-grow: 1;
+
+    .headBlock {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .headMainBlock {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+
+        .name {
+          font-weight: 700;
+          font-size: 24px;
+          color: #f2e8cf;
+        }
+        .color {
+          width: 32px;
+          height: 32px;
+          border-radius: 16px;
+          border: 1px solid #f2e8cf;
+        }
+      }
+    }
+
+    .info {
+      max-width: 70%;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 126%;
+      color: #f2e8cf;
+    }
+  }
+}
