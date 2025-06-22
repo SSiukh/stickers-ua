@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { refreshUser } from "../redux/auth/operations";
 import CreateStickers from "./CreateStickers/CreateStickers";
 import { fetchProducts } from "../redux/products/operations";
+import OrdersProcessing from "./OrdersProcessing/OrdersProcessing";
 
 const HomePage = lazy(() => import("../pages/HomePage"));
 const CatalogPage = lazy(() => import("../pages/CatalogPage/CatalogPage"));
@@ -51,6 +52,7 @@ function App() {
             element={<ManagerRoute component={<ManagerPage />} />}
           >
             <Route path="create-stickers" element={<CreateStickers />} />
+            <Route path="orders-processing" element={<OrdersProcessing />} />
           </Route>
           <Route path="/*" element={<NotFoundPage />} />
         </Route>

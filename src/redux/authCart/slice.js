@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
   addItemToCart,
+  clearCart,
   getCartItems,
   patchCartItem,
   removeCartItem,
@@ -60,7 +61,8 @@ const slice = createSlice({
       .addCase(removeCartItem.fulfilled, (state) => {
         calculateQty(state);
         calculateTotalPrice(state);
-      });
+      })
+      .addCase(clearCart.fulfilled, () => initialState);
   },
 });
 

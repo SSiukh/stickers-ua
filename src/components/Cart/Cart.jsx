@@ -40,7 +40,8 @@ const Cart = () => {
   };
 
   const handleOrder = () => {
-    if (!elements.length) {
+    console.log(authProducts.length);
+    if (!elements.length && !authProducts.length) {
       toast.error("Додайте товари в кошик");
       return;
     }

@@ -44,12 +44,19 @@
         font-size: 24px;
         color: #f2e8cf;
         margin-bottom: 15px;
+        margin-top: 20px;
       }
 
       .mainSign {
         font-weight: 400;
         font-size: 14px;
+        margin-top: 20px;
         color: rgba(242, 232, 207, 0.75);
+      }
+
+      .buttonContainer {
+        width: 100%;
+        text-align: center;
       }
     }
 

@@ -49,3 +49,15 @@ export const removeCartItem = createAsyncThunk(
     }
   }
 );
+
+export const clearCart = createAsyncThunk(
+  "authCart/clearCart",
+  async (thunkAPI) => {
+    try {
+      const { data } = await api.delete(`/cart/remove`);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

@@ -1,0 +1,101 @@
+@use "../../styles/variables.scss" as *;
+
+.container {
+  width: 100%;
+  border: 1px solid #f2e8cf;
+  border-radius: 30px;
+  background-color: #38572a;
+  padding: 30px;
+
+  .date {
+    font-weight: 700;
+    font-size: 14px;
+    color: rgba(242, 232, 207, 0.5);
+  }
+
+  .headBlock {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+
+    .headMainBlock {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+
+      .name {
+        font-weight: 700;
+        font-size: 22px;
+        color: #f2e8cf;
+      }
+    }
+    .buttons {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+  }
+
+  .mainBlock {
+    display: flex;
+    justify-content: space-between;
+    gap: 70px;
+
+    .value {
+      font-weight: 700;
+      font-size: 16px;
+      color: #f2e8cf;
+    }
+
+    .infoBlock {
+      width: calc(50% - 35px);
+
+      .infoHeadBlock {
+        display: flex;
+        align-items: center;
+
+        .infoHeadBlockItem {
+          width: 50%;
+        }
+      }
+
+      .infoBlockItem {
+        margin-top: 15px;
+        width: 100%;
+      }
+    }
+    .productListWrapper {
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid $beige-border;
+      background-color: rgba(217, 217, 217, 0.29);
+      width: calc(50% - 35px);
+      flex-grow: 1;
+      max-height: 200px;
+    }
+
+    .productList {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-height: 200px;
+      padding: 20px;
+      overflow: auto;
+
+      &::-webkit-scrollbar {
+        width: 5px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: $beige-border;
+        border-radius: 10px;
+
+        &:hover,
+        &:active {
+          background-color: $beige;
+        }
+      }
+    }
+  }
+}

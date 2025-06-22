@@ -25,8 +25,7 @@ const slice = createSlice({
         state.settlements = payload[0];
       })
       .addCase(getWarehousesByIdName.fulfilled, (state, { payload }) => {
-        console.log(payload);
-        state.warehouseKeyword = payload[0];
+        state.warehouses = payload;
       });
   },
 });
