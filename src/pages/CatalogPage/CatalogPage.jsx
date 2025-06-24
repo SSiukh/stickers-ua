@@ -10,8 +10,12 @@ const CatalogPage = () => {
       <BackLayout>
         <CatalogSidebar />
         <div className={s.container}>
-          <CatalogList />
-          <HelpBar />
+          <div className={s.catalogList}>
+            <CatalogList />
+          </div>
+          <div className={s.helpBar}>
+            <HelpBar />
+          </div>
         </div>
       </BackLayout>
     </div>
