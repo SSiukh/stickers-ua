@@ -3,7 +3,7 @@
 .container {
   margin-top: 110px;
   border-top: 1px solid $beige-border;
-  width: 80%;
+  width: 100%;
   height: calc(100dvh - 110px);
 
   .list {
@@ -52,7 +52,7 @@
     margin-top: 20px;
     border-top: none;
     width: 100%;
-    height: calc(100dvh - 310px);
+    height: calc(100dvh - 210px);
 
     .list {
       .item {
@@ -84,6 +84,6 @@
 
 @media screen and (max-width: 480px) {
   .container {
-    height: calc(100dvh - 335px);
+    height: calc(100dvh - 215px);
   }
 }
