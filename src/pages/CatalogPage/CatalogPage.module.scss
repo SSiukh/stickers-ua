@@ -2,6 +2,10 @@
   display: flex;
   flex-direction: row;
   width: 100%;
+
+  .catalogList {
+    flex-grow: 1;
+  }
 }
 
 @media screen and (max-width: 950px) {

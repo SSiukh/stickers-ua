@@ -72,7 +72,9 @@ const CartProductCard = ({ data }) => {
         </IconButton>
       </div>
       <div className={s.cardBottom}>
-        <p className={s.price}>{discount === 0 ? price : discount} грн</p>
+        <p className={s.price}>
+          {discount === 0 ? price : price - discount} грн
+        </p>
         <div className={s.qtyBlock}>
           <IconButton onClick={handleDecreseQty} size="small" color="secondary">
             <RemoveIcon />

@@ -20,23 +20,20 @@ const Category = ({ category, icon }) => {
   const handleFilterChange = (newType) => {
     const params = new URLSearchParams();
     const updatedFilters = {
-      type: newType !== "all" ? newType : "",
+      type: newType,
       search,
     };
 
     if (updatedFilters.type && newType !== "all")
       params.set("type", updatedFilters.type);
 
-    dispatch(setCategory(newType !== "all" ? newType : ""));
+    dispatch(setCategory(newType));
     navigate(`?${params.toString()}`);
   };
 
   return (
     <Button
-      disabled={
-        (category === "all" && currentCategory === "") ||
-        currentCategory === category
-      }
+      disabled={currentCategory === category}
       onClick={() => handleFilterChange(category)}
       size="large"
       startIcon={icon}

@@ -122,7 +122,7 @@ const ProductCard = ({ stickers, isWishCard }) => {
           {discount !== 0 && (
             <div className={s.prices}>
               <p className={s.price}>{price} грн</p>
-              <p className={s.discount}>{discount} грн/шт</p>
+              <p className={s.discount}>{price - discount} грн/шт</p>
             </div>
           )}
           {discount === 0 && <p className={s.realPrice}>{price} грн</p>}
