@@ -18,7 +18,7 @@ const calculateTotalPrice = (state) => {
   state.info.totalPrice = state.items.reduce(
     (sum, { price, discount, qty }) => {
       if (discount) {
-        return sum + discount * qty;
+        return sum + (price - discount) * qty;
       }
 
       return sum + price * qty;

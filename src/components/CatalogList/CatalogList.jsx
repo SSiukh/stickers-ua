@@ -22,14 +22,22 @@ const CatalogList = () => {
 
   useEffect(() => {
     const query = new URLSearchParams(location.search);
-
-    const type = query.get("type") || null;
-    const search = query.get("search") || null;
+    const type = query.get("type") || "all";
+    const search = query.get("search") || "";
 
     dispatch(setCategory(type));
     dispatch(setKeyword(search));
 
-    dispatch(fetchProducts({ type, search }));
+    const params = {};
+    if (type !== "all") {
+      params.type = type;
+    }
+
+    if (search !== "") {
+      params.search = search;
+    }
+
+    dispatch(fetchProducts(params));
   }, [location.search, dispatch]);
 
   if (isLoading) {
@@ -45,6 +53,7 @@ const CatalogList = () => {
     <Loader />
   ) : (
     <div className={s.container}>
+      {!stickers.length && <p className={s.noneStickers}>Відсутні товари</p>}
       <ul className={s.list}>
         {stickers.map((sticker) => (
           <li className={s.item} key={sticker._id}>

@@ -29,6 +29,7 @@ import { selectWishItems } from "../../redux/wish/selectors";
 import { selectAuthWishItems } from "../../redux/authWish/selectors";
 import { addItemToWish } from "../../redux/authWish/operations";
 import { addWish } from "../../redux/wish/slice";
+import { stickerTypes } from "../../utils/utils";
 
 const ProductCardPage = () => {
   const { productId } = useParams();
@@ -152,9 +153,9 @@ const ProductCardPage = () => {
             </div>
             <div className={s.info}>
               <p className={s.price}>
-                Ціна: {discount === 0 ? price : discount}
+                Ціна: {discount === 0 ? price : price - discount} грн
               </p>
-              <p className={s.category}>Категорія: {type}</p>
+              <p className={s.category}>Категорія: {stickerTypes[type]}</p>
             </div>
             <div className={s.colorBlock}>
               <p className={s.colorText}>Кольори:</p>

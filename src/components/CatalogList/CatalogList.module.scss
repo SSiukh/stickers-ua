@@ -6,6 +6,14 @@
   width: 100%;
   height: calc(100dvh - 110px);
 
+  .noneStickers {
+    margin-top: 100px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 24px;
+    color: #f2e8cf;
+  }
+
   .list {
     display: flex;
     flex-wrap: wrap;
